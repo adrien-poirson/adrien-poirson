@@ -1,0 +1,17 @@
+.github-contact {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.github-contact:hover {
+    transform: scale(1.1);
+}
+
+.github-icon {
+    fill: #c3c3c3;
+    transition: fill 0.3s ease;
+}
+
+.github-contact:hover .github-icon {
+    fill: #fff;
+}

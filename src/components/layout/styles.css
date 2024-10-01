@@ -1,0 +1,12 @@
+.layout-container {
+    font-family: -apple-system, Roboto, sans-serif, serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    padding: 16px;
+    flex-direction: column;
+    flex: 1;
+}
