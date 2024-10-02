@@ -31,17 +31,20 @@ const Layout = ({ children }) => {
     const bgImage = convertToBgImage(image);
 
     return (
-        <BackgroundImage
-            Tag="div"
-            {...bgImage}
-            preserveStackingContext
-            className="layout-container"
-            backgroundColor={`#040e18`}
-        >
+        <>
             <Header />
-            <main className="main-content">{children}</main>
-            <Footer />
-        </BackgroundImage>
+            <BackgroundImage
+                Tag="div"
+                {...bgImage}
+                preserveStackingContext
+                className="layout-container"
+                backgroundColor={`#040e18`}
+            >
+                <main>{children}</main>
+
+                <Footer />
+            </BackgroundImage>
+        </>
     );
 };
 

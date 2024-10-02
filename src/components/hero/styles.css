@@ -1,0 +1,38 @@
+.hero {
+    height: calc(100vh - var(--nav-bar-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color, #333);
+  }
+  
+  .hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+    color: var(--title-color, #F25D07);
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 2rem;
+    color: var(--subtitle-color, #4a4a4a);
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .resume-button {
+    margin-top: 16px;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    text-decoration: none;
+}

@@ -6,10 +6,10 @@ import "./styles.css";
 const Footer = () => {
     return (
         <footer className="footer">
-            <p>
+            <span>
                 &copy; {new Date().getFullYear()} Adrien Poirson. All rights
                 reserved.
-            </p>
+            </span>
             <GitHubContact username="adrien-poirson" />
         </footer>
     );
