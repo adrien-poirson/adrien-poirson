@@ -14,10 +14,16 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         {
+            resolve: "gatsby-plugin-anchor-links",
+            options: {
+                offset: -65,
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
-                name: `images`,
-                path: `${__dirname}/src/images`,
+                name: `static`,
+                path: `${__dirname}/static`,
             },
         },
     ],

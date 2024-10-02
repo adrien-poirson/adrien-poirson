@@ -1,28 +1,30 @@
 {
-  "name": "adrien-poirson",
-  "version": "1.0.0",
-  "private": true,
-  "description": "adrien-poirson",
-  "author": "Adrien Poirson",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "dependencies": {
-    "gatsby": "^5.13.7",
-    "gatsby-background-image": "^1.6.0",
-    "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-sharp": "^5.13.1",
-    "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-transformer-sharp": "^5.13.1",
-    "gbimage-bridge": "^0.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "name": "adrien-poirson",
+    "version": "1.0.0",
+    "private": true,
+    "description": "adrien-poirson",
+    "author": "Adrien Poirson",
+    "keywords": [
+        "gatsby"
+    ],
+    "scripts": {
+        "develop": "gatsby develop -H 0.0.0.0",
+        "start": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean"
+    },
+    "dependencies": {
+        "gatsby": "^5.13.7",
+        "gatsby-background-image": "^1.6.0",
+        "gatsby-plugin-anchor-links": "^1.2.1",
+        "gatsby-plugin-image": "^3.13.1",
+        "gatsby-plugin-sharp": "^5.13.1",
+        "gatsby-source-filesystem": "^5.13.1",
+        "gatsby-transformer-sharp": "^5.13.1",
+        "gbimage-bridge": "^0.2.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-responsive": "^10.0.0"
+    }
 }

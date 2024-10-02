@@ -4,11 +4,13 @@ import Layout from "../components/layout/Layout";
 const BlogPage = () => {
     return (
         <Layout>
-            <h1>Blog</h1>
+            <div className="blog-section">
+                <h1>Blog</h1>
+            </div>
         </Layout>
     );
 };
 
 export default BlogPage;
 
-export const Head = () => <title>Blog</title>;
+export const Head = () => <title>Adrien Poirson (#Blog)</title>;

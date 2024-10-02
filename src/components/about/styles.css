@@ -1,0 +1,15 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--color-dark-blue);
+
+}
+
+.story {
+    width: 45%;
+
+    &:nth-child(odd) {
+        align-self: flex-end;
+    }
+}
