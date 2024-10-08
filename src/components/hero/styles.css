@@ -1,5 +1,6 @@
 .hero {
-    height: calc(100vh - var(--nav-bar-height));
+    /* height: calc(100vh - var(--nav-bar-height)); */
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,23 +9,23 @@
   
   .hero-content {
     text-align: center;
-    max-width: 800px;
     padding: 0 20px;
   }
   
   .hero-title {
     font-size: 4rem;
-    color: var(--title-color, #F25D07);
+    color: var(--title-color);
     margin-bottom: 0.5rem;
   }
   
   .hero-subtitle {
     font-size: 2rem;
-    color: var(--subtitle-color, #4a4a4a);
+    color: var(--color-light-blue);
     margin-bottom: 1rem;
   }
   
   .hero-text {
+    color: var(--text-color-on-dark);
     font-size: 1.2rem;
     line-height: 1.6;
   }

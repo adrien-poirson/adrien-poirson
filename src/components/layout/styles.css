@@ -1,6 +1,18 @@
 .layout-container {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    position: initial !important;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-container {
+    /* height: 100vh; */
+    /* height: calc(100vh - var(--nav-bar-height)); */
+    /* padding-top: var(--nav-bar-height); */
+    min-height: calc(100vh - var(--nav-bar-height));
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
 }

@@ -31,11 +31,15 @@
 :root {
     --title-color: #D3D3D3;
     --subtitle-color: #A9A9A9;
-    --text-color: lightgrey;;
+    --text-color: lightgrey;
+    --text-color-on-light: #00247A;
+    --text-color-on-dark: #F5F5F5;
     --nav-bar-height: 64px;
     --color-dark-blue: #00247A;
-    --color-dark-lightgrey: #CDDEEE;
+    --color-lightgrey: #CDDEEE;
     --color-pink: #F241B4;
+    --color-orange: orange;
+    --color-light-blue: #41c5f2;
 
 }
 
@@ -48,15 +52,14 @@ html {
     font-family: -apple-system, Roboto, sans-serif, serif;
 }
 
-h1 {
-    color: var(--title-color);
-}
-
-h2 {
-    color: var(--subtitle-color);
-}
-
 section {
-    min-height: calc(100vh - var(--nav-bar-height));
-    padding: 4rem 2rem;
+    /* scroll-snap-align: start; */
+    /* height: calc(100vh - var(--nav-bar-height)); */
+    height: 100vh;
+    padding: 2rem;
+
+}
+
+.title-on-light {
+    color: var(--text-color-on-light);
 }

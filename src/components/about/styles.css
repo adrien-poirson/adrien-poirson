@@ -2,11 +2,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: var(--color-dark-blue);
-
+    background-color: #cddeee;
+    background-image: linear-gradient(358deg, #cddeee 0%, #fce0c3 100%);
+    color: var(--text-color-on-light)
 }
 
-.story {
+.about h1 {
+    color: var(--text-color-on-light);
+}
+
+.story-web {
     width: 45%;
 
     &:nth-child(odd) {
