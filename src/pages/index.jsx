@@ -6,7 +6,6 @@ import About from '../components/about/About';
 import Skills from '../components/skills/Skills';
 import Work from '../components/work/Work';
 import Contact from '../components/contact/Contact';
-import Footer from '../components/footer/Footer';
 
 const Home = () => {
     return (
@@ -24,7 +23,6 @@ const Home = () => {
             <Element name="contact">
                 <Contact />
             </Element>
-            <Footer />
         </Layout>
     );
 };

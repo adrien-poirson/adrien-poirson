@@ -1,3 +1,43 @@
 .contact-section {
-    background: var(--color-lightgrey);
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color-on-light);
+    height: calc(100vh - 60px);
+}
+
+.contact-container {
+    flex: 1 1;
+    padding: 2rem;
+    color: #ebebeb;
+}
+
+.contact-background-container {
+    display: flex;
+    flex-direction: column;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.input-field-container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.contact-section h1 {
+    color: var(--color-lightgrey);
+}
+
+.contact-form {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    width: 282px;
+    padding: 16px;
+}
+
+.contact-submit-form {
+    margin-top: 16px;
+    cursor: pointer;
 }

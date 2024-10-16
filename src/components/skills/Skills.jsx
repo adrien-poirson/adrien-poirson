@@ -1,4 +1,7 @@
 import React from 'react';
+import SoftSkillsIcon from '../../assets/icons/soft-skills.svg';
+import TechnicalSkillsIcon from '../../assets/icons/technical-skills.svg';
+import AIIcon from '../../assets/icons/ai.svg';
 import './styles.css';
 
 const Skills = () => {
@@ -8,7 +11,7 @@ const Skills = () => {
             skills: ['JavaScript ES7', 'TypeScript', 'HTML', 'CSS', 'Python'],
         },
         {
-            category: 'Frameworks/Libraries',
+            category: 'Tech Stack',
             skills: [
                 'React',
                 'React Native',
@@ -48,23 +51,33 @@ const Skills = () => {
 
     return (
         <section className="skills-section" id="skills">
-            <h1>Blending Skills, Technology, and Innovation</h1>
             <div className="skills-section-container">
-                <h2>Soft skills</h2>
+                <h1>Blending Skills, Technology, and Innovation</h1>
+
+                <div className="title-with-icon">
+                    <SoftSkillsIcon width={60} height={60} />
+                    <h2>Soft skills</h2>
+                </div>
                 <p>
                     While technical skills are crucial, I believe soft skills
-                    are the true differentiator in our field. My focus on
-                    effective communication, adaptability, and collaborative
-                    problem-solving has consistently enhanced team dynamics and
-                    project outcomes. In the evolving landscape of remote work,
-                    these interpersonal abilities have proven invaluable,
-                    enabling seamless cooperation across diverse teams and
-                    driving innovative solutions. It's this combination of
-                    technical expertise and refined soft skills that I strive to
-                    bring to every project, aiming to elevate not just my own
-                    work, but the entire team's performance.
+                    are the true differentiator in our field. My focus on{' '}
+                    <b>
+                        effective communication, adaptability, and collaborative
+                        problem-solving
+                    </b>{' '}
+                    has consistently enhanced team dynamics and project
+                    outcomes. In the evolving landscape of remote work, these
+                    interpersonal abilities have proven invaluable, enabling
+                    seamless cooperation across diverse teams and driving
+                    innovative solutions. It's this combination of technical
+                    expertise and refined soft skills that I strive to bring to
+                    every project, aiming to elevate not just my own work, but
+                    the entire team's performance.
                 </p>
-                <h2>About AI</h2>
+                <div className="title-with-icon">
+                    <AIIcon width={60} height={60} />
+                    <h2>About AI</h2>
+                </div>
                 <p>
                     I harness AI tools to boost productivity in software
                     development, streamlining routine tasks and accelerating
@@ -75,7 +88,10 @@ const Skills = () => {
                     using Cursor IDE and Claude 3.5 Sonnet model. I have also
                     experimented with ChatGPT and GitHub Copilot.
                 </p>
-                <h2>Technical skills</h2>
+                <div className="title-with-icon">
+                    <TechnicalSkillsIcon width={60} height={60} />
+                    <h2>Technical skills</h2>
+                </div>
                 <div className="skills-container">
                     {skillsets.map((skillset, index) => (
                         <div key={index} className="skill-category">

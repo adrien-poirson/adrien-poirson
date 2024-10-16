@@ -1,10 +1,9 @@
 .hero {
-    /* height: calc(100vh - var(--nav-bar-height)); */
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-color, #333);
+    padding: 2rem;
   }
   
   .hero-content {

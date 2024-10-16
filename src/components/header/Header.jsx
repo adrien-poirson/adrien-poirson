@@ -21,7 +21,6 @@ const Header = () => {
                         smooth={true}
                         duration={500}
                         className="nav-link"
-                        offset={-65}
                     >
                         About
                     </Link>
@@ -32,7 +31,6 @@ const Header = () => {
                         smooth={true}
                         duration={500}
                         className="nav-link"
-                        offset={-65}
                     >
                         Skills
                     </Link>
@@ -43,7 +41,6 @@ const Header = () => {
                         smooth={true}
                         duration={500}
                         className="nav-link"
-                        offset={-65}
                     >
                         Work
                     </Link>
@@ -54,17 +51,15 @@ const Header = () => {
                         smooth={true}
                         duration={500}
                         className="nav-link"
-                        offset={-65}
                     >
                         Contact
                     </Link>
                 </li>
-                {/* For the blog link, use a regular anchor tag as it's not an internal section */}
-                <li>
+                {/* <li>
                     <a href="/blog" className="nav-link">
                         Blog
                     </a>
-                </li>
+                </li> */}
             </ul>
         </nav>
     );

@@ -40,7 +40,6 @@
     --color-pink: #F241B4;
     --color-orange: orange;
     --color-light-blue: #41c5f2;
-
 }
 
 html {
@@ -50,16 +49,4 @@ html {
     width: 100%;
     color: var(--text-color);
     font-family: -apple-system, Roboto, sans-serif, serif;
-}
-
-section {
-    /* scroll-snap-align: start; */
-    /* height: calc(100vh - var(--nav-bar-height)); */
-    height: 100vh;
-    padding: 2rem;
-
-}
-
-.title-on-light {
-    color: var(--text-color-on-light);
 }

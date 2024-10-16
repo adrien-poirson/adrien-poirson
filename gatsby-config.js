@@ -6,19 +6,21 @@ module.exports = {
         title: `Adrien Poirson`,
         description: `A showcase of my work and skills`,
         author: `Adrien Poirson`,
-        siteUrl: `https://www.yourdomain.tld`,
+        siteUrl: `http://www.adrien-poirson.dev`,
         spaceId: 'mwiutaeqiwq1',
     },
     plugins: [
         `gatsby-plugin-image`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
-        // {
-        //     resolve: 'gatsby-plugin-anchor-links',
-        //     options: {
-        //         offset: -65,
-        //     },
-        // },
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /src\/assets\/icons/,
+                },
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {

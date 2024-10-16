@@ -27,6 +27,7 @@
 
 .initials:hover {
     color: var(--color-pink);
+    -webkit-text-stroke: unset;
 }
 
 .nav-web ul {
@@ -36,26 +37,33 @@
     padding-inline-start: 0;
 }
 
-.nav-web .nav-link {
+.nav-link, .initials {
     margin: 16px;
     color: #FFF;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
+    
+    -webkit-text-stroke: 1px #ebebeb;
+   color: white;
+   text-shadow: 2px 2px 0 #00247a, -1px -1px 0 #00247a, 1px -1px 0 #00247a, -1px 1px 0 #00247a, 1px 1px 0 #00247a;
 }
 
 .nav-link:hover {
     cursor: pointer;
     color: var(--color-pink);
+    -webkit-text-stroke: unset;
 }
 
 .nav-mobile {
     display: flex;
     margin: 0;
     height: var(--nav-bar-height);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     z-index: 4;
     backdrop-filter: blur(4px);

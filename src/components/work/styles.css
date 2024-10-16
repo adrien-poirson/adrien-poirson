@@ -4,10 +4,15 @@
     background-color: #cddeee;
     background-image: linear-gradient(358deg, #cddeee 0%, #ebebeb 100%);
     color: var(--text-color-on-light);
+    padding: 2rem;
 }
 
 .work h1 {
     color: var(--text-color-on-light);
+}
+
+.intro {
+    padding: 0 2rem;
 }
 
 .slides-container {
@@ -15,9 +20,10 @@
     display: flex;
     flex: 1 1;
     border-radius: 8px;
-    padding: 25px;
+    padding: 2rem;
     background: rgba(184, 201, 217, 0.25);
     border: solid 1px #b8c9d9;
+    max-height: calc(100vh - var(--nav-bar-height) - 1rem);
 
 }
 
@@ -30,3 +36,49 @@
 .slides-story {
     width: 63%;
 }
+
+/* Mobile styles */
+
+.work-mobile {
+    display: flex;
+    flex-direction: column;
+    background-color: #cddeee;
+    background-image: linear-gradient(358deg, #cddeee 0%, #ebebeb 100%);
+    color: var(--text-color-on-light);
+}
+
+.fullpage-picture {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.slides-container-mobile {
+    display: flex;
+    flex: 1 1;
+    border-radius: 4px;
+    padding: 1.5rem;
+    background: rgba(184, 201, 217, 0.25);
+    height: calc(100vh - var(--nav-bar-height));
+    min-height: calc(100vh - var(--nav-bar-height));
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.mobile-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+  
+  .mobile-list li {
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .mobile-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+  }

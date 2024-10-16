@@ -85,7 +85,7 @@ export default () => {
                         using React Native, broadening our product's
                         accessibility and user base.
                     </p>
-                    <p className="slides-story-container">
+                    <div className="slides-story-container">
                         {cumul8Picture && (
                             <GatsbyImage
                                 image={getImage(cumul8Picture.node)}
@@ -95,11 +95,11 @@ export default () => {
                                     height: '63%',
                                     margin: '32px',
                                     borderRadius: '4px',
-                                    border: 'solid 1px grey',
+                                    border: 'solid 1px #b8c9d9',
                                 }}
                             />
                         )}
-                    </p>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <h2>Calabrio, Minneapolis, MN</h2>
@@ -134,7 +134,7 @@ export default () => {
                         between hands-on development and project leadership.
                     </p>
                     <div className="slides-story-container">
-                        <p className="slides-story">
+                        <div className="slides-story">
                             My greatest challenge at Calabrio was the
                             implementation of a high-performance Pivot Table
                             component capable of handling millions of datapoints
@@ -157,17 +157,17 @@ export default () => {
                             responsiveness and usability while processing vast
                             datasets, challenging me to balance intricate
                             functionality with smooth user experience.
-                        </p>
+                        </div>
                         {calabrioPicture && (
                             <GatsbyImage
                                 image={getImage(calabrioPicture.node)}
                                 alt="Calabrio"
                                 style={{
-                                    width: '50%',
+                                    width: '63%',
                                     height: '100%',
                                     margin: '32px',
                                     borderRadius: '4px',
-                                    border: 'solid 1px grey',
+                                    border: 'solid 1px #b8c9d9',
                                 }}
                             />
                         )}
@@ -202,47 +202,44 @@ export default () => {
                         support from a back-end engineer, I had the freedom to
                         utilize cutting-edge technologies such as GraphQL and
                         React Hooks, as the project was starting from scratch.
-                        <p className="slides-story-container">
-                            <p className="slides-story">
-                                This project was particularly engaging due to
-                                its complex feature set, which included:
-                                <ul>
-                                    <li>
-                                        Advanced filtering and sorting
-                                        capabilities
-                                    </li>
-                                    <li>
-                                        Search functionality with result
-                                        highlighting
-                                    </li>
-                                    <li>
-                                        Data export options to CSV and DOC
-                                        formats
-                                    </li>
-                                </ul>
-                                One of the key challenges was optimizing the
-                                display of potentially vast amounts of data.
-                                Through careful implementation of performance
-                                enhancements, we ensured that the page loads and
-                                displays information swiftly, maintaining a
-                                responsive and smooth user experience even when
-                                handling large datasets.
-                            </p>
-                            {discoPicture && (
-                                <GatsbyImage
-                                    image={getImage(discoPicture.node)}
-                                    alt="Cumul8"
-                                    style={{
-                                        width: '50%',
-                                        height: '63%',
-                                        margin: '32px',
-                                        borderRadius: '4px',
-                                        border: 'solid 1px grey',
-                                    }}
-                                />
-                            )}
-                        </p>
                     </p>
+                    <div className="slides-story-container">
+                        <div className="slides-story">
+                            This project was particularly engaging due to its
+                            complex feature set, which included:
+                            <ul>
+                                <li>
+                                    Advanced filtering and sorting capabilities
+                                </li>
+                                <li>
+                                    Search functionality with result
+                                    highlighting
+                                </li>
+                                <li>
+                                    Data export options to CSV and DOC formats
+                                </li>
+                            </ul>
+                            One of the key challenges was optimizing the display
+                            of potentially vast amounts of data. Through careful
+                            implementation of performance enhancements, we
+                            ensured that the page loads and displays information
+                            swiftly, maintaining a responsive and smooth user
+                            experience even when handling large datasets.
+                        </div>
+                        {discoPicture && (
+                            <GatsbyImage
+                                image={getImage(discoPicture.node)}
+                                alt="CS Disco"
+                                style={{
+                                    width: '63%',
+                                    height: '100%',
+                                    margin: '32px',
+                                    borderRadius: '4px',
+                                    border: 'solid 1px #b8c9d9',
+                                }}
+                            />
+                        )}
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <h2>My Personal Journal</h2>
@@ -262,7 +259,7 @@ export default () => {
                         tool that not only captures daily thoughts but also
                         promotes mindfulness and personal development.
                     </p>
-                    <p>
+                    <div>
                         As of today the list of features is rather simple:
                         <ul>
                             <li>
@@ -272,8 +269,8 @@ export default () => {
                             <li>Full-text search functionality</li>
                             <li>Editing of entries</li>
                         </ul>
-                    </p>
-                    <p className="slides-story-container">
+                    </div>
+                    <div className="slides-story-container">
                         <p className="slides-story">
                             I'm planning on bringing more features soons, like
                             data encryption, mood tracking, tagging, daily
@@ -282,17 +279,17 @@ export default () => {
                         {journalPicture && (
                             <GatsbyImage
                                 image={getImage(journalPicture.node)}
-                                alt="Cumul8"
+                                alt="My Personal Journal"
                                 style={{
                                     width: '63%',
                                     height: '100%',
                                     margin: '32px',
                                     borderRadius: '4px',
-                                    border: 'solid 1px grey',
+                                    border: 'solid 1px #b8c9d9',
                                 }}
                             />
                         )}
-                    </p>
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>Personal Project: Trade Seeds</SwiperSlide>
                 {/* <span slot="container-start">Container Start</span>
