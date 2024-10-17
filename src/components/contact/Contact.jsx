@@ -54,7 +54,11 @@ const ContactForm = () => {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: data,
         })
-            .then(() => navigate(form.getAttribute('action')))
+            .then(() => {
+                setName('');
+                setEmail('');
+                setMessage('');
+            })
             .catch((error) => alert(error));
     };
 
