@@ -73,7 +73,6 @@ const ContactForm = () => {
             <section className="contact-section" id="contact">
                 <div className="contact-container">
                     <h1>Contact</h1>
-
                     <form
                         name="contact"
                         method="POST"
@@ -87,7 +86,7 @@ const ContactForm = () => {
                             <label htmlFor="name">Name:</label>
                             <input
                                 type="text"
-                                id="name"
+                                name="name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -97,7 +96,7 @@ const ContactForm = () => {
                             <label htmlFor="email">Email:</label>
                             <input
                                 type="email"
-                                id="email"
+                                name="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -106,7 +105,7 @@ const ContactForm = () => {
                         <div className="input-field-container">
                             <label htmlFor="message">Message:</label>
                             <textarea
-                                id="message"
+                                name="message"
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 required
