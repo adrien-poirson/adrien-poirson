@@ -7,11 +7,19 @@ import Footer from '../footer/Footer';
 
 import './styles.css';
 
+function encode(data) {
+    return Object.keys(data)
+        .map(
+            (key) =>
+                encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+        )
+        .join('&');
+}
+
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [honeypot, setHoneypot] = useState('');
 
     const { backgroundImage } = useStaticQuery(graphql`
         query {
@@ -33,40 +41,21 @@ const ContactForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (honeypot?.length > 0) {
-            // Probably a bot
-            return;
-        }
-
-        const formData = {
-            name: name,
-            email: email,
-            message: message,
-        };
+        const form = e.target;
+        const data = encode({
+            'form-name': form.getAttribute('name'),
+            name,
+            email,
+            message,
+        });
 
         fetch('/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data,
         })
-            .then((response) => {
-                if (response.ok) {
-                    console.log('Form successfully submitted');
-                    // Reset form fields
-                    setName('');
-                    setEmail('');
-                    setMessage('');
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            });
+            .then(() => navigate(form.getAttribute('action')))
+            .catch((error) => alert(error));
     };
 
     return (
@@ -85,9 +74,11 @@ const ContactForm = () => {
                         name="contact"
                         method="POST"
                         data-netlify="true"
+                        data-netlify-honeypot="bot-field"
                         onSubmit={handleSubmit}
                         className="contact-form"
                     >
+                        <input type="hidden" name="form-name" value="contact" />{' '}
                         <div className="input-field-container">
                             <label htmlFor="name">Name:</label>
                             <input
@@ -108,16 +99,6 @@ const ContactForm = () => {
                                 required
                             />
                         </div>
-                        <input
-                            type="text"
-                            name="honeypot"
-                            id="honeypot"
-                            value={honeypot}
-                            onChange={(e) => setHoneypot(e.target.value)}
-                            style={{ display: 'none' }}
-                            tabIndex="-1"
-                            autoComplete="off"
-                        />
                         <div className="input-field-container">
                             <label htmlFor="message">Message:</label>
                             <textarea
