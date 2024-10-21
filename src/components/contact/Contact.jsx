@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import { convertToBgImage } from 'gbimage-bridge';
 import BackgroundImage from 'gatsby-background-image';
+import { toast } from 'react-toastify';
 import Footer from '../footer/Footer';
 
 import './styles.css';
@@ -58,8 +59,25 @@ const ContactForm = () => {
                 setName('');
                 setEmail('');
                 setMessage('');
+                toast.success('Message sent !', {
+                    position: 'bottom-left',
+                    autoClose: 3500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
             })
-            .catch((error) => alert(error));
+            .catch((error) => {
+                toast.error('Message failed, please try again later', {
+                    position: 'bottom-left',
+                    autoClose: 3500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+            });
     };
 
     return (
@@ -73,6 +91,13 @@ const ContactForm = () => {
             <section className="contact-section" id="contact">
                 <div className="contact-container">
                     <h1>Contact</h1>
+                    <p>
+                        I'm always open to exciting opportunities that match my
+                        skills and experience. If you have a project or position
+                        that you think would be a great fit, please don't
+                        hesitate to get in touch. I look forward to hearing
+                        about how we might work together!
+                    </p>
                     <form
                         name="contact"
                         method="POST"
@@ -81,7 +106,7 @@ const ContactForm = () => {
                         onSubmit={handleSubmit}
                         className="contact-form"
                     >
-                        <input type="hidden" name="form-name" value="contact" />{' '}
+                        <input type="hidden" name="form-name" value="contact" />
                         <div className="input-field-container">
                             <label htmlFor="name">Name:</label>
                             <input

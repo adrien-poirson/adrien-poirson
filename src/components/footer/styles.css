@@ -7,3 +7,20 @@
     justify-content: space-between;
     padding: 16px;
 }
+
+.all-rights-reserved {
+    margin-left: 12px;
+}
+
+@media (min-width:320px) {
+    .all-rights-reserved {
+        font-size: 12px;
+    }
+}
+
+.links {
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

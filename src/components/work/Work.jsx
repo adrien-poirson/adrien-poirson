@@ -24,7 +24,7 @@ const Work = () => {
                     challenging projects and drive innovative solutions in the
                     ever-evolving landscape of web development.
                 </p>
-                <p>Here is a highlight of things I have worked on:</p>
+                <p>Here is a highlight of things I have worked on: (swipe !)</p>
             </div>
             {isMobile ? <SlidesMobile /> : <Slides />}
         </section>

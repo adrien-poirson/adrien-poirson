@@ -102,10 +102,12 @@ export default () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <h2>Calabrio, Minneapolis, MN</h2>
-                    <a href="https://www.calabrio.com/" target="_blank">
-                        calabrio.com
-                    </a>
+                    <div className="slide-title">
+                        <h2>Calabrio, Minneapolis, MN</h2>
+                        <a href="https://www.calabrio.com/" target="_blank">
+                            calabrio.com
+                        </a>
+                    </div>
                     <p>
                         Leveraging the knowledge and experience I had
                         accumulated, I took a significant career leap by joining
@@ -174,10 +176,13 @@ export default () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <h2>Disco, Austin, TX</h2>
-                    <a href="https://csdisco.com/" target="_blank">
-                        csdisco.com
-                    </a>
+                    <div className="slide-title">
+                        <h2>Disco, Austin, TX</h2>
+                        <a href="https://csdisco.com/" target="_blank">
+                            csdisco.com
+                        </a>
+                    </div>
+
                     <br />
                     <a
                         href="https://support.csdisco.com/hc/en-us/articles/9607869349261-Release-for-Nov-21-2022-Organization-Metrics"
@@ -242,13 +247,15 @@ export default () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <h2>My Personal Journal</h2>
-                    <a
-                        href="http://www.my-personal-journal.com"
-                        target="_blank"
-                    >
-                        my-personal-journal.com
-                    </a>
+                    <div className="slide-title">
+                        <h2>My Personal Journal</h2>
+                        <a
+                            href="http://www.my-personal-journal.com"
+                            target="_blank"
+                        >
+                            my-personal-journal.com
+                        </a>
+                    </div>
                     <p>
                         As the name implies, My Personal Journal is a digital
                         journaling application I started developing in late
@@ -291,11 +298,51 @@ export default () => {
                         )}
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>Personal Project: Trade Seeds</SwiperSlide>
-                {/* <span slot="container-start">Container Start</span>
-                <span slot="container-end">Container End</span>
-                <span slot="wrapper-start">Wrapper Start</span>
-                <span slot="wrapper-end">Wrapper End</span> */}
+                <SwiperSlide>
+                    <h2>Personal Project: Trade Seeds</h2>
+                    <p>
+                        During my two-year stint as a day trader, I recognized
+                        the critical need for a systematic approach to data
+                        recording and analysis. This realization led to the
+                        creation of "Trade Seeds," a personal project designed
+                        to enhance my trading strategy and accountability. The
+                        concept was straightforward yet powerful: each morning,
+                        I'd select a handful of stocks and meticulously plan
+                        potential trades. At day's end, I'd compare my actual
+                        actions against these pre-defined plans. This method
+                        served a dual purpose: 1. Ensuring adherence to
+                        well-thought-out, strategic trades 2. Minimizing
+                        impulsive, unplanned actions The name "Trade Seeds"
+                        stems from the idea that each planned trade is like
+                        planting a seed – it has the potential to grow into
+                        profitable results, much like a seed can grow into a
+                        tree. This metaphor reinforced the importance of careful
+                        planning and patience in trading. This project not only
+                        improved my trading discipline but also provided
+                        valuable insights into my decision-making patterns,
+                        ultimately contributing to my growth as a trader and a
+                        developer.
+                    </p>
+                    <p>
+                        The "Trade Seeds" application leveraged a robust,
+                        full-stack architecture: • Back-end: Implemented with
+                        Python using the Flask framework, providing a
+                        lightweight yet powerful server-side solution. •
+                        Database: Utilized MongoDB, a NoSQL database, offering
+                        flexibility for storing and querying complex trading
+                        data. • API: Developed a RESTful API to facilitate
+                        seamless communication between the front-end and
+                        back-end. • Front-end: Built with React, ensuring a
+                        dynamic and responsive user interface for efficient
+                        trade planning and analysis. • Deployment: Self-hosted
+                        on a home server, demonstrating proficiency in system
+                        administration and network configuration. This tech
+                        stack not only served the application's needs
+                        effectively but also showcased my versatility in working
+                        with diverse technologies across the full development
+                        spectrum.
+                    </p>
+                </SwiperSlide>
             </Swiper>
         </div>
     );

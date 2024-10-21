@@ -1,5 +1,6 @@
 import React from 'react';
 import GitHubContact from '../githubContact/GithubContact';
+import LinkedInContact from '../linkedinContact/LinkedinContact';
 
 import './styles.css';
 
@@ -7,10 +8,15 @@ const Footer = () => {
     return (
         <footer className="footer">
             <span>
-                &copy; {new Date().getFullYear()} Adrien Poirson. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} Adrien Poirson.
+                <span className="all-rights-reserved">
+                    All rights reserved.
+                </span>
             </span>
-            <GitHubContact username="adrien-poirson" />
+            <div className="links">
+                <GitHubContact username="adrien-poirson" />
+                <LinkedInContact username="adrienpoirson" />
+            </div>
         </footer>
     );
 };

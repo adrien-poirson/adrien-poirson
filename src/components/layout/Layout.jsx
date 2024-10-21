@@ -3,10 +3,11 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import { convertToBgImage } from 'gbimage-bridge';
 import BackgroundImage from 'gatsby-background-image';
-
+import { ToastContainer } from 'react-toastify';
 import Header from '../header/Header';
 
 import './styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = ({ children }) => {
     const { backgroundImage } = useStaticQuery(graphql`
@@ -36,7 +37,10 @@ const Layout = ({ children }) => {
             backgroundColor={`#040e18`}
         >
             <Header />
-            <main className="main-container">{children}</main>
+            <main className="main-container">
+                {children}
+                <ToastContainer />
+            </main>
         </BackgroundImage>
     );
 };

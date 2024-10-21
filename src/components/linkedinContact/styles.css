@@ -1,0 +1,17 @@
+.linkedin-contact {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.linkedin-contact:hover {
+    transform: scale(1.1);
+}
+
+.linkedin-contact:hover .linkedin-icon {
+    fill: #fff;
+}
+
+.linkedin-icon {
+    fill: #c3c3c3;
+    transition: fill 0.3s ease;
+}

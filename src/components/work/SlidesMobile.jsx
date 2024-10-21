@@ -105,7 +105,7 @@ export default () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <a href="https://www.calabrio.com/" target="_blank">
-                        Calabrio, Minneapolis, MN
+                        <h2>Calabrio, Minneapolis, MN</h2>
                     </a>
                     <p>
                         I took a significant career leap by joining Calabrio, a
@@ -175,7 +175,7 @@ export default () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <a href="https://csdisco.com/" target="_blank">
-                        Disco, Austin, TX
+                        <h2>Disco, Austin, TX</h2>
                     </a>
                     <br />
                     <a
@@ -235,7 +235,7 @@ export default () => {
                         href="http://www.my-personal-journal.com"
                         target="_blank"
                     >
-                        My Personal Journal
+                        <h2>My Personal Journal</h2>
                     </a>
                     <p>
                         My Personal Journal is a digital journaling application
@@ -280,7 +280,25 @@ export default () => {
                         )}
                     </div>
                 </SwiperSlide>
-                <SwiperSlide>Personal Project: Trade Seeds</SwiperSlide>
+                <SwiperSlide>
+                    <h2>Personal Project: Trade Seeds</h2>
+                    <p>
+                        "Trade Seeds" was born from my day trading experience,
+                        designed to enhance strategy and accountability. Each
+                        morning, I'd plan trades for selected stocks, comparing
+                        actual actions to plans at day's end. This approach
+                        improved discipline and decision-making, while
+                        metaphorically viewing trades as seeds with growth
+                        potential.
+                    </p>
+                    <p>
+                        The application featured a full-stack architecture:
+                        Python (Flask) backend, MongoDB database, RESTful API,
+                        and React frontend. Self-hosted on a home server, it
+                        demonstrated my versatility across various technologies
+                        and development areas.
+                    </p>
+                </SwiperSlide>
             </Swiper>
         </div>
     );
