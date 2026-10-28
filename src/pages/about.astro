@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Principles from '../components/Principles.astro';
 import Cta from '../components/Cta.astro';
-import { skills } from '../data/skills';
 import { experience, site } from '../data/site';
 
 const description =
@@ -83,40 +82,7 @@ const facts = [
 		</div>
 	</section>
 
-	<!-- Toolbox: a ledger, category on the left, tools on the right. -->
-	<section class="band">
-		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
-			<div class="grid gap-10 lg:grid-cols-12">
-				<div class="lg:col-span-4">
-					<p class="eyebrow">02 — Toolbox</p>
-					<h2 class="heading mt-3 text-4xl sm:text-5xl">
-						What I <em>reach for.</em>
-					</h2>
-					<p class="mt-5 max-w-[34ch] leading-relaxed text-ink-2">What I use day to day as a full-stack engineer in Vancouver, roughly in the order of how often. The list changes; the habit of learning it does not.</p>
-				</div>
-				<table class="w-full border-collapse text-left lg:col-span-8">
-					<tbody class="divide-y divide-rule border-y border-rule">
-						{skills.map(({ title, skills: items }) => (
-							<tr class="block align-top sm:table-row">
-								<th scope="row" class="eyebrow block pt-5 pb-2.5 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:pb-4 sm:pt-[1.45rem]">
-									{title}
-								</th>
-								<td class="block pb-5 sm:table-cell sm:py-4">
-									<ul class="flex flex-wrap gap-2">
-										{items.map((item) => (
-											<li class="rounded-full border border-rule bg-paper-2 px-3 py-1 text-[0.92rem] leading-snug text-ink">{item}</li>
-										))}
-									</ul>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</section>
-
-	<Principles index="03" />
+	<Principles index="02" />
 
 	<Cta />
 </Layout>

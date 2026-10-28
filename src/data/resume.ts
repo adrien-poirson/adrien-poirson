@@ -1,6 +1,7 @@
 // The resume, as data. /resume/ renders it, and `yarn resume` prints /resume/print/ to public/ResumeAdrienPoirson.pdf.
 // Lines marked private are only in the PDF, never in the site's HTML.
 import { experience, site } from './site';
+import { skills } from './skills';
 
 export const resume = {
 	name: site.name,
@@ -14,15 +15,7 @@ export const resume = {
 	],
 	summary:
 		`Senior full-stack engineer with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers for legal, contact-centre, healthcare and research platforms. Most at home in React and TypeScript, and comfortable with Node, Python and databases when a project needs the whole thing. Remote since 2018. I take ownership of what I ship, write plainly, and build every day with AI agents while answering for every line.`,
-	skills: [
-		{ title: 'Languages', items: 'TypeScript, JavaScript, HTML, CSS, Python, PHP' },
-		{ title: 'Front end', items: 'React, React Native, Next.js, Astro, Redux, TanStack, GraphQL, styled-components, Tailwind CSS, Storybook' },
-		{ title: 'Data and visualization', items: 'Victory, react-virtualized, react-window, Amazon Quick Suite, custom charts and pivot tables, real-time dashboards' },
-		{ title: 'Testing', items: 'React Testing Library, Playwright, Cypress, Jest' },
-		{ title: 'Back end and data', items: 'Node.js, Python (Flask), REST APIs, PostgreSQL, MongoDB, Firebase' },
-		{ title: 'DevOps and tooling', items: 'Git, GitHub Actions, Docker, Webpack, Vite, Netlify, Vercel, Firebase Hosting and Storage, DigitalOcean, AWS console, Ubuntu server administration over SSH (installs, updates, maintenance), Tailscale, DNS and email domain setup' },
-		{ title: 'AI', items: 'Claude Code, Hermes agent, agent skills and prompting, OpenRouter and open-weight models, Ollama, Whisper, Markdown vaults' },
-	],
+	skills,
 	experience: [
 		{
 			company: 'PolicyReporter',

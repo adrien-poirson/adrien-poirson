@@ -21,7 +21,7 @@ const header = [
 const pages = [
 	`- [Home](${url('/')}): introduction, what Adrien builds, selected work and working with AI.`,
 	`- [Work](${url('/work/')}): every role, newest first, and personal projects.`,
-	`- [About](${url('/about/')}): background, toolbox and principles.`,
+	`- [About](${url('/about/')}): background and principles.`,
 	`- [Blog](${url('/blog/')}): articles, published on Medium.`,
 	`- [Contact](${url('/contact/')}): how to get in touch.`,
 	`- [Resume](${url(site.resume)}): the resume, with a PDF to download at ${url(site.resumePdf)}.`,
@@ -77,7 +77,7 @@ export function llmsFullTxt() {
 
 	out.push(...articleList());
 
-	out.push('## Toolbox', '');
+	out.push('## Skills', '');
 	for (const { title, skills: items } of skills) out.push(`- ${title}: ${items.join(', ')}`);
 	out.push('');
 
