@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { offers, skills } from '../data/skills';
 
 interface Props {
 	title: string;
@@ -13,11 +14,15 @@ interface Props {
 	pageType?: 'WebPage' | 'ProfilePage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
 	/** What the page is mainly about, as schema.org data, e.g. the blog and its posts. */
 	mainEntity?: Record<string, unknown>;
+	/** Extra words after the name in the browser and search title, e.g. what the page is for. */
+	titleSuffix?: string;
 }
 
-const { title, description = site.description, noindex = false, pageType, mainEntity } = Astro.props;
+const { title, description = site.description, noindex = false, pageType, mainEntity, titleSuffix } = Astro.props;
 const isHome = Astro.url.pathname === '/';
-const fullTitle = isHome ? `${site.name} | Software engineer in Vancouver` : `${title} | ${site.name}`;
+const fullTitle = isHome
+	? `${site.name} | ${site.role} in Vancouver`
+	: `${title} | ${site.name}${titleSuffix ? `, ${titleSuffix}` : ''}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const robots = noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 // The social card, made by `yarn og` from scripts/og.html.
@@ -41,7 +46,27 @@ const person = {
 	worksFor: { '@type': 'Organization', name: site.employer, url: 'https://www.policyreporter.com/' },
 	alumniOf: { '@type': 'CollegeOrUniversity', name: 'Université Toulouse 1 Capitole' },
 	knowsLanguage: ['en', 'fr'],
-	knowsAbout: ['React', 'TypeScript', 'Data visualization', 'Dashboards', 'Web applications', 'Front-end architecture', 'Design systems', 'AI agents'],
+	// What I do, the toolbox's areas and every tool in it, so a search for a skill and Vancouver can find me.
+	knowsAbout: [
+		...new Set([
+			...offers.map((o) => o.title),
+			'Dashboards',
+			'Data visualization',
+			'Front-end development',
+			'Full-stack development',
+			'Front-end architecture',
+			'DevOps',
+			...skills.map((g) => g.title),
+			...skills.flatMap((g) => g.skills),
+		]),
+	],
+	hasOccupation: {
+		'@type': 'Occupation',
+		name: site.role,
+		alternateName: ['Software engineer', 'Full-stack developer', 'Front-end engineer'],
+		occupationLocation: { '@type': 'City', name: 'Vancouver, BC, Canada' },
+		skills: skills.flatMap((g) => g.skills).join(', '),
+	},
 };
 const website = {
 	'@type': 'WebSite',
@@ -137,9 +162,9 @@ const graph = { '@context': 'https://schema.org', '@graph': [person, website, we
 		</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Instrument Serif for headings, Instrument Sans for everything else, JetBrains Mono for the small labels. -->
+		<!-- Space Grotesk for headings, Instrument Sans for everything else, JetBrains Mono for the small labels. -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
 	</head>

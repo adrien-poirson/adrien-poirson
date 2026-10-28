@@ -3,12 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Principles from '../components/Principles.astro';
 import Cta from '../components/Cta.astro';
 import { skills } from '../data/skills';
-import { site } from '../data/site';
+import { experience, site } from '../data/site';
 
 const description =
-	'About Adrien Poirson: a software engineer in Vancouver, originally from France, with over ten years on the front end of data products, and the toolbox that goes with it.';
+	`About Adrien Poirson, a senior full-stack engineer in Vancouver from France: over ${experience.words} years of TypeScript, React, dashboards and data visualization.`;
 const facts = [
-	{ label: 'Now', value: `Software engineer at ${site.employer}` },
+	{ label: 'Now', value: `${site.currentRole} at ${site.employer}` },
 	{ label: 'Based in', value: 'Vancouver, Canada' },
 	{ label: 'Languages', value: 'English and French' },
 	{ label: 'Education', value: 'Master in Information Systems and Software Development, UT1 Capitole, France' },
@@ -16,7 +16,7 @@ const facts = [
 ];
 ---
 
-<Layout title="About" description={description} pageType="AboutPage">
+<Layout title="About" titleSuffix="TypeScript and React in Vancouver" description={description} pageType="AboutPage">
 	<section class="dotgrid">
 		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
 			<p class="eyebrow">About</p>
@@ -30,7 +30,7 @@ const facts = [
 		<div class="grid gap-12 lg:grid-cols-12">
 			<div class="space-y-6 text-lg leading-relaxed text-ink-2 lg:col-span-7">
 				<p class="text-xl text-ink">
-					I am a software engineer in Vancouver, originally from France. I have spent over ten years on the client side of data products, where the impact of
+					I am a senior full-stack engineer in Vancouver, originally from France. I have spent over {experience.words} years on the client side of data products, where the impact of
 					the work is visible the moment it ships.
 				</p>
 				<p>
@@ -49,7 +49,7 @@ const facts = [
 					a team good, and I bring those to every project on purpose.
 				</p>
 				<p>
-					These days I am a software engineer at {site.employer}, in Vancouver: healthcare policy data, which is to say a lot of it, and people who need the
+					These days I am a {site.currentRole.toLowerCase()} at {site.employer}, in Vancouver: healthcare policy data, which is to say a lot of it, and people who need the
 					right part of it quickly.
 				</p>
 			</div>
@@ -85,16 +85,22 @@ const facts = [
 					<h2 class="heading mt-3 text-4xl sm:text-5xl">
 						What I <em>reach for.</em>
 					</h2>
-					<p class="mt-5 max-w-[34ch] leading-relaxed text-ink-2">Roughly in the order of how often. The list changes; the habit of learning it does not.</p>
+					<p class="mt-5 max-w-[34ch] leading-relaxed text-ink-2">What I use day to day as a full-stack engineer in Vancouver, roughly in the order of how often. The list changes; the habit of learning it does not.</p>
 				</div>
 				<table class="w-full border-collapse text-left lg:col-span-8">
 					<tbody class="divide-y divide-rule border-y border-rule">
 						{skills.map(({ title, skills: items }) => (
-							<tr class="block align-baseline sm:table-row">
-								<th scope="row" class="eyebrow block pt-4 pb-1 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:py-4">
+							<tr class="block align-top sm:table-row">
+								<th scope="row" class="eyebrow block pt-5 pb-2.5 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:pb-4 sm:pt-[1.45rem]">
 									{title}
 								</th>
-								<td class="block pb-4 text-[1.05rem] leading-relaxed text-ink sm:table-cell sm:py-4">{items.join(', ')}</td>
+								<td class="block pb-5 sm:table-cell sm:py-4">
+									<ul class="flex flex-wrap gap-2">
+										{items.map((item) => (
+											<li class="rounded-full border border-rule bg-paper-2 px-3 py-1 text-[0.92rem] leading-snug text-ink">{item}</li>
+										))}
+									</ul>
+								</td>
 							</tr>
 						))}
 					</tbody>

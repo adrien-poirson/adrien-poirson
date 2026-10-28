@@ -71,7 +71,7 @@ const isCurrent = (href: string) => current.startsWith(href);
 		</div>
 	</nav>
 	<div id="mobile-nav" hidden class="border-t border-rule bg-paper md:hidden">
-		<ul class="mx-auto max-w-5xl px-6 py-3 font-serif text-2xl">
+		<ul class="mx-auto max-w-5xl px-6 py-3 font-display text-2xl">
 			{nav.map(({ href, label }) => (
 				<li class="border-b border-rule">
 					<a href={href} class:list={['block py-3', isCurrent(href) ? 'text-accent' : 'text-ink']}>

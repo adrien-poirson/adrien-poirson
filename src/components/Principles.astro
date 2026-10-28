@@ -1,5 +1,6 @@
 ---
 // How I work: three columns under a solid rule, numbered in the mono.
+import { experience } from '../data/site';
 interface Props {
 	index?: string;
 }
@@ -30,7 +31,7 @@ const principles = [
 				</h2>
 			</div>
 			<p class="max-w-[40ch] self-end text-lg leading-relaxed text-ink-2 lg:col-span-6 lg:col-start-7">
-				Seven companies, two countries, more than ten years. The tools changed every few of them. These did not.
+				Seven companies, two countries, more than {experience.words} years. The tools changed every few of them. These did not.
 			</p>
 		</div>
 		<ol class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-3">

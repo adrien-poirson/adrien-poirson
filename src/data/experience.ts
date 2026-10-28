@@ -3,6 +3,7 @@ import disco from '../images/disco-1.jpg';
 import calabrio from '../images/calabrio.png';
 import cumul8 from '../images/cumul8.png';
 import journal from '../images/my-personal-journal.webp';
+import oceanops from '../images/oceanops.webp';
 
 export interface Role {
 	company: string;
@@ -27,19 +28,25 @@ export const roles: Role[] = [
 	{
 		company: 'PolicyReporter',
 		url: 'https://www.policyreporter.com/',
-		location: 'Vancouver',
-		role: 'Software engineer',
+		location: 'Vancouver, BC (remote)',
+		role: 'Full-stack engineer',
 		period: 'Present',
-		summary: 'Front-end engineering on healthcare policy data: a lot of it, and people who need to understand it quickly.',
+		summary:
+			'Front-end direction on a healthcare policy platform: a component library I built from scratch for 30 engineers, and PHP pages rebuilt in modern React.',
 		story: [
-			'Where I work now. PolicyReporter tracks healthcare coverage policy, which means a great deal of structured data and people who need the right part of it in front of them fast. The problem I know best, in a new domain.',
+			'Where I work now. PolicyReporter tracks healthcare coverage policy: a great deal of structured data, and people who need the right part of it fast. I co-lead the front end’s technical direction: we set the code standards and decide the stack, which libraries we adopt, keep or retire.',
+		],
+		highlights: [
+			'Created from scratch, and maintain, the component library 30 engineers build with. No bug reported against it, and feedback addressed as it comes in.',
+			'Re-implementing legacy PHP pages in modern React.',
+			'Dashboards with Amazon Quick Suite, through custom integration code because its SDK was too recent for our PHP version, with automatic user provisioning.',
 		],
 	},
 	{
 		company: 'CS Disco',
 		url: 'https://csdisco.com/',
 		location: 'Austin, Texas (remote)',
-		role: 'Front-end engineer, reporting',
+		role: 'Software architect, reporting',
 		period: 'Jan 2022 – Aug 2024',
 		summary:
 			'Organization Metrics, a reporting product that shows legal teams how their whole organisation uses the platform, built from the ground up with React and GraphQL.',
@@ -63,7 +70,7 @@ export const roles: Role[] = [
 	{
 		company: 'Global Relay',
 		url: 'https://www.globalrelay.com/',
-		location: 'Vancouver',
+		location: 'Vancouver, BC (remote)',
 		role: 'Front-end engineer, UI library',
 		period: 'Sep 2021 – Dec 2021',
 		summary: 'A short contract on the UI component library of a compliance and archiving platform.',
@@ -74,7 +81,7 @@ export const roles: Role[] = [
 	{
 		company: 'Calabrio',
 		url: 'https://www.calabrio.com/',
-		location: 'Minneapolis, Minnesota (remote)',
+		location: 'Vancouver, BC (remote)',
 		role: 'Principal front-end developer, Data Explorer',
 		period: 'Oct 2017 – Sep 2021',
 		summary:
@@ -94,7 +101,7 @@ export const roles: Role[] = [
 	},
 	{
 		company: 'Cumul8',
-		location: 'Vancouver',
+		location: 'Vancouver, BC',
 		role: 'Front-end engineer',
 		period: 'Jan 2016 – Nov 2017',
 		summary: 'A data analytics and IoT platform: real-time dashboards, interactive charts, a shared component library and a React Native app.',
@@ -107,13 +114,13 @@ export const roles: Role[] = [
 			'A React Native app that brought key features and an alert system to mobile.',
 		],
 		image: cumul8,
-		imageAlt: 'Cumul8: a dark analytics dashboard with live charts and gauges.',
+		imageAlt: 'Cumul8: an analytics dashboard with live charts and gauges.',
 		featured: true,
 	},
 	{
 		company: 'Thinkingbox',
 		url: 'https://thinkingbox.com/',
-		location: 'Vancouver',
+		location: 'Vancouver, BC',
 		role: 'Front-end developer',
 		period: 'Jul 2015 – Nov 2015',
 		summary: 'Mobile-first marketing sites in React for film releases.',
@@ -131,6 +138,8 @@ export const roles: Role[] = [
 		story: [
 			'Where it started, at the end of my master’s: a data management application for the international ocean-observation programmes coordinated by JCOMMOPS, now OceanOPS. A desktop-like interface with custom widgets, dashboards and charts, and a map widget for exploring and downloading geospatial data. My first dashboards, and the first time I saw how much a clear interface changes what people can do with their data.',
 		],
+		image: oceanops,
+		imageAlt: 'OceanOPS today: the map of ocean-observation platforms.',
 	},
 ];
 
@@ -164,7 +173,7 @@ export const projects: Project[] = [
 		],
 		stack: ['TypeScript', 'React', 'styled-components', 'Firebase', 'Cloud Functions', 'Playwright', 'GitHub Actions'],
 		image: journal,
-		imageAlt: 'My Personal Journal: an entry with a photo on the open page of the book, the search ribbon pulled down over it, and the index of past entries beside it.',
+		imageAlt: 'My Personal Journal: an entry open in the book, beside the index of past entries.',
 	},
 	{
 		name: 'local-llm-lab',

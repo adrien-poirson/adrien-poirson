@@ -13,7 +13,7 @@ const header = [
 	'',
 	`> ${site.description}`,
 	'',
-	`${site.name} is a ${site.role.toLowerCase()} at ${site.employer}, based in Vancouver, Canada. Works in English and French, remote since 2018, with a Master in Information Systems and Software Development from UT1 Capitole, France.`,
+	`${site.name} is a ${site.currentRole.toLowerCase()} at ${site.employer}, based in Vancouver, Canada. Works in English and French, remote since 2018, with a Master in Information Systems and Software Development from UT1 Capitole, France.`,
 	'',
 	`Contact: ${site.url}/contact/ · LinkedIn: ${site.linkedin} · GitHub: ${site.github}`,
 ];

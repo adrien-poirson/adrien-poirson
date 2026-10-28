@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Cta from '../components/Cta.astro';
 import { roles, projects } from '../data/experience';
+import { experience } from '../data/site';
 
 const description =
 	'Adrien Poirson’s work, in order: PolicyReporter, CS Disco, Global Relay, Calabrio, Cumul8, Thinkingbox and JCOMMOPS, plus personal projects.';
@@ -15,7 +16,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
 			<p class="eyebrow">Work — {roles.length} roles, newest first</p>
 			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
-				A decade on the front end of <em>data.</em>
+				{experience.words[0].toUpperCase() + experience.words.slice(1)} years on the front end of <em>data.</em>
 			</h1>
 			<p class="mt-10 max-w-[52ch] text-xl leading-relaxed text-ink-2">
 				I started on ocean-research data in France and moved to Vancouver in 2015. Since then nearly every role has been the same problem in a new domain: a lot
@@ -26,7 +27,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 
 	<!-- The timeline: a rail down the left, the company and dates sticky beside the story on wide screens. -->
 	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
-		<ol class="rail ml-1 sm:ml-2">
+		<ol class="rail ml-1 sm:ml-2" data-timeline>
 			{roles.map(({ company, url, location, role, period, story, highlights, link, image, imageAlt }) => (
 				<li id={slug(company)} class="grid scroll-mt-28 gap-6 py-10 pl-7 sm:pl-10 lg:grid-cols-12 lg:gap-10 lg:py-14">
 					<div class="lg:sticky lg:top-24 lg:col-span-4 lg:self-start">
@@ -63,14 +64,16 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 						)}
 						{image && (
 							<figure class="mt-8">
-								<Image
-									src={image}
-									alt={imageAlt ?? company}
-									widths={[480, 800, 1200, 1600]}
-									sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
-									class="h-auto w-full border border-rule-strong"
-								/>
-								<figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>
+								<div class="shot">
+									<Image
+										src={image}
+										alt={imageAlt ?? company}
+										widths={[480, 800, 1200, 1600]}
+										sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
+										class="h-auto w-full"
+									/>
+								</div>
+								{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
 							</figure>
 						)}
 					</div>
@@ -116,13 +119,16 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 							</ul>
 							{image && (
 								<figure class="mt-6">
-									<Image
-										src={image}
-										alt={imageAlt ?? name}
-										widths={[480, 800, 1200, 1600]}
-										sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
-										class="h-auto w-full border border-rule-strong"
-									/>
+									<div class="shot">
+										<Image
+											src={image}
+											alt={imageAlt ?? name}
+											widths={[480, 800, 1200, 1600]}
+											sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
+											class="h-auto w-full"
+										/>
+									</div>
+									{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
 								</figure>
 							)}
 						</li>
@@ -137,3 +143,44 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 		body="Happy to go into the details of any of it, or to compare notes if you have solved the same problems differently."
 	/>
 </Layout>
+
+<script>
+	// Animates the timeline as you scroll; the styles are .rail-animated in global.css.
+	const rail = document.querySelector<HTMLElement>('[data-timeline]');
+	if (rail && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const entries = [...rail.children] as HTMLElement[];
+		rail.classList.add('rail-animated');
+
+		const appear = new IntersectionObserver(
+			(seen) => {
+				for (const { isIntersecting, target } of seen) {
+					if (!isIntersecting) continue;
+					target.classList.add('is-visible');
+					appear.unobserve(target);
+				}
+			},
+			{ rootMargin: '0px 0px -12% 0px' },
+		);
+		entries.forEach((li) => appear.observe(li));
+
+		// The reading line sits a little above the middle of the screen.
+		const dotOffset = parseFloat(getComputedStyle(document.documentElement).fontSize) * 3.4;
+		let queued = false;
+		const update = () => {
+			queued = false;
+			const line = innerHeight * 0.45;
+			const box = rail.getBoundingClientRect();
+			const progress = Math.min(1, Math.max(0, (line - box.top) / box.height));
+			rail.style.setProperty('--rail-progress', progress.toFixed(4));
+			for (const li of entries) li.classList.toggle('is-reached', li.getBoundingClientRect().top + dotOffset <= line);
+		};
+		const queue = () => {
+			if (queued) return;
+			queued = true;
+			requestAnimationFrame(update);
+		};
+		addEventListener('scroll', queue, { passive: true });
+		addEventListener('resize', queue);
+		update();
+	}
+</script>
