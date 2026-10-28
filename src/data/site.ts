@@ -7,8 +7,8 @@ export const experience = { years, words: numberWords[years - 10] ?? String(year
 // The few facts every page shares.
 export const site = {
 	name: 'Adrien Poirson',
-	role: 'Software engineer',
-	tagline: 'Software engineer in Vancouver.',
+	role: 'Senior full-stack engineer',
+	tagline: 'Senior full-stack engineer in Vancouver.',
 	email: 'adrien.poirson@gmail.com',
 	url: 'https://adrien-poirson.dev',
 	resume: '/resume/',
@@ -16,8 +16,10 @@ export const site = {
 	github: 'https://github.com/adrien-poirson',
 	linkedin: 'https://www.linkedin.com/in/adrienpoirson',
 	employer: 'PolicyReporter',
+	/** My title there, for the "currently" lines; `role` stays the general headline. */
+	currentRole: 'Full-stack engineer',
 	description:
-		`Adrien Poirson is a software engineer in Vancouver with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers, built in React and TypeScript.`,
+		`Adrien Poirson is a senior full-stack engineer in Vancouver with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers, built in React and TypeScript.`,
 };
 
 export const nav = [

@@ -4,7 +4,7 @@ import { experience, site } from './site';
 
 export const resume = {
 	name: site.name,
-	title: 'Software Engineer',
+	title: 'Senior Full-stack Engineer',
 	contact: [
 		{ label: 'Vancouver, BC, Canada' },
 		{ label: '604-347-5631', href: 'tel:+16043475631', private: true },
@@ -13,16 +13,15 @@ export const resume = {
 		{ label: 'adrien-poirson.dev', href: site.url },
 	],
 	summary:
-		`Software engineer with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers for legal, contact-centre, healthcare and research platforms. Most at home in React and TypeScript, and comfortable with Node, Python and databases when a project needs the whole thing. Remote since 2018. I take ownership of what I ship, write plainly, and build every day with AI agents while answering for every line.`,
+		`Senior full-stack engineer with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers for legal, contact-centre, healthcare and research platforms. Most at home in React and TypeScript, and comfortable with Node, Python and databases when a project needs the whole thing. Remote since 2018. I take ownership of what I ship, write plainly, and build every day with AI agents while answering for every line.`,
 	skills: [
 		{ title: 'Languages', items: 'TypeScript, JavaScript, HTML, CSS, Python, PHP' },
-		{ title: 'Front end', items: 'React, React Native, Next.js, Astro, Redux, GraphQL, styled-components, Tailwind CSS, Storybook' },
+		{ title: 'Front end', items: 'React, React Native, Next.js, Astro, Redux, TanStack, GraphQL, styled-components, Tailwind CSS, Storybook' },
 		{ title: 'Data and visualization', items: 'Victory, react-virtualized, react-window, Amazon Quick Suite, custom charts and pivot tables, real-time dashboards' },
 		{ title: 'Testing', items: 'React Testing Library, Playwright, Cypress, Jest' },
 		{ title: 'Back end and data', items: 'Node.js, Python (Flask), REST APIs, PostgreSQL, MongoDB, Firebase' },
-		{ title: 'Tooling and delivery', items: 'Git, GitHub Actions, Docker, Webpack, Vite, Netlify, Tailscale, Linux servers' },
+		{ title: 'DevOps and tooling', items: 'Git, GitHub Actions, Docker, Webpack, Vite, Netlify, Vercel, Firebase Hosting and Storage, DigitalOcean, AWS console, Ubuntu server administration over SSH (installs, updates, maintenance), Tailscale, DNS and email domain setup' },
 		{ title: 'AI', items: 'Claude Code, Hermes agent, agent skills and prompting, OpenRouter and open-weight models, Ollama, Whisper, Markdown vaults' },
-		{ title: 'Soft skills', items: 'Communication, adaptability, collaboration, ownership, problem-solving' },
 	],
 	experience: [
 		{

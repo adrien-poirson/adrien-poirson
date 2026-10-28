@@ -15,7 +15,7 @@ const stats = [
 	{ value: '2', label: 'languages: English and French' },
 ];
 const now = [
-	{ label: 'Currently', value: `Software engineer at ${site.employer}` },
+	{ label: 'Currently', value: `${site.currentRole} at ${site.employer}` },
 	{ label: 'Previously', value: 'CS Disco, Calabrio, Cumul8' },
 	{ label: 'Based in', value: 'Vancouver, Canada' },
 ];
@@ -27,7 +27,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 	<!-- Hero: type on graph paper. -->
 	<section class="dotgrid">
 		<div class="mx-auto max-w-5xl px-6 pb-16 pt-16 sm:pt-24 lg:pb-24 lg:pt-32">
-			<p class="eyebrow">Adrien Poirson — Software engineer, Vancouver</p>
+			<p class="eyebrow">Adrien Poirson — {site.role}, Vancouver</p>
 			<h1 class="display mt-6 max-w-[15ch] text-[3rem] sm:text-[4.25rem] lg:text-[5.5rem]">
 				I build software that turns complicated data into something <em>clear.</em>
 			</h1>
