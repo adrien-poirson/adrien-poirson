@@ -45,9 +45,9 @@ const blog = {
 
 	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
 		{articles.length ? (
-			<ol class="border-t border-ink">
+			<ol>
 				{articles.map(({ id, title, url, excerpt, image, tags, published, minutes }, i) => (
-					<li id={id} class="grid scroll-mt-28 gap-6 border-b border-rule py-10 lg:grid-cols-12 lg:gap-10 lg:py-12">
+					<li id={id} class="grid scroll-mt-28 gap-6 py-10 lg:grid-cols-12 lg:gap-10 lg:py-12">
 						<div class="mono flex gap-4 text-ink-3 lg:col-span-3 lg:flex-col lg:gap-1">
 							<time datetime={published}>{formatDate(published)}</time>
 							<span>{minutes} min read</span>

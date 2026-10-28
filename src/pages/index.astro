@@ -56,26 +56,19 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 		</div>
 	</section>
 
-	<!-- Four numbers -->
+	<!-- Four numbers, as dashboard tiles. -->
 	<section class="mx-auto max-w-5xl px-6">
-		<dl class="grid grid-cols-2 border-y border-ink lg:grid-cols-4">
-			{stats.map(({ value, label }, i) => (
-				<div
-					class:list={[
-						'py-7 pr-5',
-						i % 2 === 1 && 'border-l border-rule pl-5',
-						i >= 2 && 'border-t border-rule lg:border-t-0',
-						i === 2 && 'lg:border-l lg:pl-5',
-					]}
-				>
-					<dd class="font-display text-5xl leading-none tracking-tight tabular-nums sm:text-6xl" data-count={value}>{value}</dd>
-					<dt class="mt-3 max-w-[22ch] text-[0.95rem] leading-snug text-ink-2">{label}</dt>
+		<dl class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+			{stats.map(({ value, label }) => (
+				<div class="flex flex-col rounded-xl border border-rule bg-paper-2 p-4 sm:p-5">
+					<dd class="font-display text-4xl leading-none tracking-tight tabular-nums sm:text-5xl" data-count={value}>{value}</dd>
+					<dt class="mt-3 text-[0.9rem] leading-snug text-ink-2">{label}</dt>
 				</div>
 			))}
 		</dl>
 	</section>
 
-	<!-- What I do: a numbered, ruled list. -->
+	<!-- What I do: a numbered list. -->
 	<section class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
 		<div class="grid gap-10 lg:grid-cols-12">
 			<div class="lg:col-span-4">
@@ -87,7 +80,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 			</div>
 			<ol class="lg:col-span-8">
 				{offers.map(({ title, body, icon, accent }, i) => (
-					<li class="group grid gap-3 border-t border-rule py-7 last:border-b sm:grid-cols-[3.5rem_1fr]">
+					<li class="group grid gap-3 py-7 sm:grid-cols-[3.5rem_1fr]">
 						<!-- The number with its icon: side by side on phones, the icon under the number on wider screens. -->
 						<div class="flex items-start justify-between sm:flex-col sm:justify-start sm:gap-5">
 							<p class="mono pt-1 text-ink-3">{String(i + 1).padStart(2, '0')}</p>
@@ -115,7 +108,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 	</section>
 
 	<!-- Selected work: three big rows. -->
-	<section class="border-t border-ink">
+	<section class="band">
 		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
 			<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 				<div>
@@ -130,7 +123,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 			</div>
 			<ol class="mt-12">
 				{featured.map(({ company, period, role, summary }) => (
-					<li class="grid gap-4 border-t border-rule py-8 last:border-b lg:grid-cols-12 lg:gap-8">
+					<li class="grid gap-4 py-8 lg:grid-cols-12 lg:gap-8">
 						<div class="lg:col-span-4">
 							<p class="mono text-ink-3">{period}</p>
 							<h3 class="heading mt-2 text-3xl">

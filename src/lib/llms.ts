@@ -57,7 +57,9 @@ export function llmsFullTxt() {
 	out.push('## Experience', '', 'Newest first.', '');
 	for (const r of roles) {
 		out.push(`### ${r.company} — ${r.role}`, '', `${r.period} · ${r.location}${r.url ? ` · ${r.url}` : ''}`, '');
+		out.push(r.lead, '');
 		for (const p of r.story) out.push(p, '');
+		out.push(`Stack: ${r.stack.join(', ')}`, '');
 		if (r.highlights) out.push(...r.highlights.map((h) => `- ${h}`), '');
 		if (r.link) out.push(`More: [${r.link.label}](${r.link.href})`, '');
 	}
@@ -65,6 +67,7 @@ export function llmsFullTxt() {
 	out.push('## Personal projects', '');
 	for (const p of projects) {
 		out.push(`### ${p.name}`, '', `${p.period}${p.url ? ` · ${p.url}` : ''}`, '');
+		out.push(p.lead, '');
 		for (const s of p.story) out.push(s, '');
 		out.push(`Stack: ${p.stack.join(', ')}`, '');
 	}
