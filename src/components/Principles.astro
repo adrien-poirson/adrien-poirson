@@ -1,0 +1,46 @@
+---
+// How I work: three columns under a solid rule, numbered in the mono.
+interface Props {
+	index?: string;
+}
+const { index = '03' } = Astro.props;
+const principles = [
+	{
+		title: 'I own what I ship',
+		body: 'I take a project from the first conversation to production and stay with it after. The architecture, the library choices, the code review, the bug at five on a Friday: all mine to answer for.',
+	},
+	{
+		title: 'Plain words, in any timezone',
+		body: 'Remote since 2018, with teams in Vancouver, Minneapolis and Austin. Clear writing, short feedback loops and no surprises have mattered more than any framework.',
+	},
+	{
+		title: 'AI, used carefully',
+		body: 'I use AI assistants every day to write, review and test code faster. Every line still goes through me, and nothing ships because a model said it was fine.',
+	},
+];
+---
+
+<section class="bg-paper-2">
+	<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+		<div class="grid gap-6 lg:grid-cols-12">
+			<div class="lg:col-span-4">
+				<p class="eyebrow">{index} — How I work</p>
+				<h2 class="heading mt-3 text-4xl sm:text-5xl">
+					Three things that have not <em>changed.</em>
+				</h2>
+			</div>
+			<p class="max-w-[40ch] self-end text-lg leading-relaxed text-ink-2 lg:col-span-6 lg:col-start-7">
+				Seven companies, two countries, more than ten years. The tools changed every few of them. These did not.
+			</p>
+		</div>
+		<ol class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-3">
+			{principles.map(({ title, body }, i) => (
+				<li class="ruled pt-5">
+					<p class="mono text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+					<h3 class="heading mt-3 text-2xl">{title}</h3>
+					<p class="mt-3 leading-relaxed text-ink-2">{body}</p>
+				</li>
+			))}
+		</ol>
+	</div>
+</section>

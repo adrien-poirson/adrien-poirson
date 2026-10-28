@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Cta from '../components/Cta.astro';
+import { articles, formatDate, medium } from '../data/articles';
+import { site } from '../data/site';
+
+const description =
+	'Articles by Adrien Poirson, software engineer in Vancouver: notes from the work on front-end engineering, delivery pipelines, servers and building with AI.';
+
+// The blog and its posts for search engines. The posts live on Medium, so each one points there.
+const blog = {
+	'@type': 'Blog',
+	name: `${site.name}’s blog`,
+	url: medium,
+	blogPost: articles.map((a) => ({
+		'@type': 'BlogPosting',
+		headline: a.title,
+		description: a.excerpt,
+		url: a.url,
+		datePublished: a.published,
+		...(a.updated && { dateModified: a.updated }),
+		...(a.image && { image: a.image }),
+		...(a.tags.length && { keywords: a.tags.join(', ') }),
+		author: { '@id': `${site.url}/#person` },
+	})),
+};
+---
+
+<Layout title="Blog" description={description} pageType="CollectionPage" mainEntity={blog}>
+	<section class="dotgrid">
+		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
+			<p class="eyebrow">
+				Blog — {articles.length} {articles.length === 1 ? 'article' : 'articles'}, newest first
+			</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
+				Notes from the work, written <em>down.</em>
+			</h1>
+			<p class="mt-10 max-w-[52ch] text-xl leading-relaxed text-ink-2">
+				What I learned shipping something, fixing something or getting it wrong first. The articles live on Medium; every link below opens there.
+			</p>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+		{articles.length ? (
+			<ol class="border-t border-ink">
+				{articles.map(({ id, title, url, excerpt, image, tags, published, minutes }, i) => (
+					<li id={id} class="grid scroll-mt-28 gap-6 border-b border-rule py-10 lg:grid-cols-12 lg:gap-10 lg:py-12">
+						<div class="mono flex gap-4 text-ink-3 lg:col-span-3 lg:flex-col lg:gap-1">
+							<time datetime={published}>{formatDate(published)}</time>
+							<span>{minutes} min read</span>
+						</div>
+						<article class="grid gap-6 sm:grid-cols-[1fr_12rem] lg:col-span-9">
+							<div>
+								<h2 class="heading text-3xl sm:text-4xl">
+									<a href={url} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+										{title} <span class="text-accent">↗</span>
+									</a>
+								</h2>
+								<p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-ink-2">{excerpt}</p>
+								{tags.length > 0 && (
+									<ul class="dotted-list mono mt-5 text-ink-3">
+										{tags.map((t) => (
+											<li>{t.replace(/-/g, ' ')}</li>
+										))}
+									</ul>
+								)}
+							</div>
+							{image && (
+								<a href={url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" class="order-first block sm:order-none">
+									<Image
+										src={image}
+										alt=""
+										inferSize
+										widths={[384, 768]}
+										sizes="(min-width: 640px) 12rem, calc(100vw - 3rem)"
+										loading={i < 2 ? 'eager' : 'lazy'}
+										class="aspect-[16/10] w-full border border-rule-strong object-cover"
+									/>
+								</a>
+							)}
+						</article>
+					</li>
+				))}
+			</ol>
+		) : (
+			<p class="border-t border-ink pt-10 text-lg text-ink-2">Nothing here yet. The first article is on its way.</p>
+		)}
+		<Button href={medium} variant="line" icon="arrow-up-right" class="mt-10" target="_blank" rel="noopener">
+			Follow on Medium
+		</Button>
+	</section>
+
+	<Cta title="Want to talk about something you read?" body="Questions, corrections and disagreements are all welcome. I read everything and I write back." />
+</Layout>

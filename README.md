@@ -1,49 +1,38 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# adrien-poirson.dev
 
-## 🚀 Quick start
+My personal website, served at [adrien-poirson.dev](https://adrien-poirson.dev). Built with [Astro](https://astro.build) and Tailwind CSS, hosted on Netlify.
 
-1.  **Create a Gatsby site.**
+The look: Instrument Serif for headings with one italic rust word, Instrument Sans for text, JetBrains Mono for small labels; warm paper and ink with a light and dark theme; flat surfaces and solid one-pixel rules, no cards or gradients. Tokens and utilities live in `src/styles/global.css`.
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## Development
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+Requires the Node version in `.nvmrc` (`nvm use`).
 
-2.  **Start developing.**
+```sh
+yarn install
+yarn dev         # http://localhost:4321
+yarn build       # static site in dist/
+yarn preview     # serve dist/
+yarn check       # type-check the Astro files
+yarn resume      # build, then print /resume/ to public/ResumeAdrienPoirson.pdf (needs Google Chrome)
+```
 
-    Navigate into your new site’s directory and start it up.
+The resume lives in `src/data/resume.ts`; `/resume/` renders it and the `resume` script prints that page with headless Chrome. Edit the data, run the script, commit the PDF.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Structure
 
-3.  **Open the code and start customizing!**
+```text
+src/
+├── components/   Header, Footer, Button, Logo, Principles, Cta, Social
+├── data/         site facts, experience and projects, skills, the resume
+├── images/       screenshots, resized at build time by astro:assets
+├── layouts/      Layout.astro (page shell, SEO meta, theme script)
+├── pages/        one file per route: index, work, about, contact, 404
+└── styles/       global.css (Tailwind + the design tokens and utilities)
+scripts/          resume-pdf.mjs
+public/           resume PDF, favicon, robots.txt
+```
 
-    Your site is now running at http://localhost:8000!
+## Deployment
 
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+Netlify builds `main` with `yarn build` and publishes `dist/` (see `netlify.toml`). The contact form uses Netlify Forms: the form is static HTML with `data-netlify="true"`, submissions arrive in the Netlify dashboard, and the page's script sends it in place and shows the thank-you panel.

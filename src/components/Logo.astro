@@ -1,0 +1,15 @@
+---
+// The mark: the initials in the serif, with the period in rust. The old site used A.P too.
+interface Props {
+	name?: boolean;
+	class?: string;
+}
+const { name = false, class: className } = Astro.props;
+---
+
+<span class:list={['inline-flex items-baseline gap-3', className]}>
+	<span class="font-serif text-[1.65rem] leading-none tracking-tight text-ink" aria-hidden="true">
+		A<span class="text-accent">.</span>P
+	</span>
+	{name && <span class="text-[0.95rem] font-medium leading-none text-ink">Adrien Poirson</span>}
+</span>

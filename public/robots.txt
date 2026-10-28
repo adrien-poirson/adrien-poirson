@@ -1,0 +1,8 @@
+# Everyone is welcome: search engines, AI crawlers and agents alike.
+User-agent: *
+Allow: /
+
+# A plain-text summary of the site for language models: https://adrien-poirson.dev/llms.txt
+# The whole site as one plain-text file: https://adrien-poirson.dev/llms-full.txt
+
+Sitemap: https://adrien-poirson.dev/sitemap-index.xml

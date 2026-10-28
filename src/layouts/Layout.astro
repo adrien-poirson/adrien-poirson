@@ -1,0 +1,154 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+	title: string;
+	description?: string;
+	/** Keeps the page out of search results, e.g. the 404. */
+	noindex?: boolean;
+	/** What the page is to schema.org: an about page, a contact page, or a plain web page. */
+	pageType?: 'WebPage' | 'ProfilePage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+	/** What the page is mainly about, as schema.org data, e.g. the blog and its posts. */
+	mainEntity?: Record<string, unknown>;
+}
+
+const { title, description = site.description, noindex = false, pageType, mainEntity } = Astro.props;
+const isHome = Astro.url.pathname === '/';
+const fullTitle = isHome ? `${site.name} | Software engineer in Vancouver` : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const robots = noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+// The social card, made by `yarn og` from scripts/og.html.
+const image = { url: new URL('/og.png', Astro.site).href, width: 1200, height: 630, alt: `${site.name}, ${site.tagline}` };
+
+// Structured data for search engines and agents: who the site is about, the site, and this page within it.
+const personId = `${site.url}/#person`;
+const websiteId = `${site.url}/#website`;
+const person = {
+	'@type': 'Person',
+	'@id': personId,
+	name: site.name,
+	givenName: 'Adrien',
+	familyName: 'Poirson',
+	jobTitle: site.role,
+	description: site.description,
+	url: site.url,
+	email: `mailto:${site.email}`,
+	image: image.url,
+	sameAs: [site.linkedin, site.github],
+	address: { '@type': 'PostalAddress', addressLocality: 'Vancouver', addressRegion: 'BC', addressCountry: 'CA' },
+	worksFor: { '@type': 'Organization', name: site.employer, url: 'https://www.policyreporter.com/' },
+	alumniOf: { '@type': 'CollegeOrUniversity', name: 'Université Toulouse 1 Capitole' },
+	knowsLanguage: ['en', 'fr'],
+	knowsAbout: ['React', 'TypeScript', 'Data visualization', 'Dashboards', 'Web applications', 'Front-end architecture', 'Design systems', 'AI agents'],
+};
+const website = {
+	'@type': 'WebSite',
+	'@id': websiteId,
+	url: `${site.url}/`,
+	name: site.name,
+	description: site.description,
+	inLanguage: 'en',
+	publisher: { '@id': personId },
+};
+const webpage = {
+	'@type': pageType ?? (isHome ? 'ProfilePage' : 'WebPage'),
+	'@id': `${canonical}#webpage`,
+	url: canonical,
+	name: fullTitle,
+	description,
+	inLanguage: 'en',
+	isPartOf: { '@id': websiteId },
+	about: { '@id': personId },
+	...(isHome ? { mainEntity: { '@id': personId } } : mainEntity ? { mainEntity } : {}),
+	primaryImageOfPage: { '@type': 'ImageObject', url: image.url, width: image.width, height: image.height },
+	...(!isHome && {
+		breadcrumb: {
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+				{ '@type': 'ListItem', position: 2, name: title, item: canonical },
+			],
+		},
+	}),
+};
+const graph = { '@context': 'https://schema.org', '@graph': [person, website, webpage] };
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content={site.name} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={canonical} />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="color-scheme" content="light dark" />
+		<meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+		<!-- The site in plain text, for language models and agents. -->
+		<link rel="alternate" type="text/plain" href="/llms.txt" title="Summary for language models" />
+		<link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full text for language models" />
+		<link rel="me" href={site.github} />
+		<link rel="me" href={site.linkedin} />
+
+		<!-- Open Graph and X cards, for link previews. -->
+		<meta property="og:type" content={isHome ? 'profile' : 'website'} />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:locale" content="en_CA" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image.url} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content={String(image.width)} />
+		<meta property="og:image:height" content={String(image.height)} />
+		<meta property="og:image:alt" content={image.alt} />
+		{isHome && (
+			<>
+				<meta property="profile:first_name" content="Adrien" />
+				<meta property="profile:last_name" content="Poirson" />
+			</>
+		)}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image.url} />
+		<meta name="twitter:image:alt" content={image.alt} />
+
+		<script type="application/ld+json" set:html={JSON.stringify(graph)} />
+		<!-- Runs before paint so the saved theme applies without a flash. -->
+		<script is:inline>
+			(function () {
+				var saved = null;
+				try {
+					saved = localStorage.getItem('theme');
+				} catch (e) {}
+				var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+				document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+			})();
+		</script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Instrument Serif for headings, Instrument Sans for everything else, JetBrains Mono for the small labels. -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="flex min-h-screen flex-col bg-paper font-sans text-ink">
+		<Header />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- The social card, 1200x630. `yarn og` screenshots it to public/og.png. -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=block"
+			rel="stylesheet"
+		/>
+		<style>
+			* { margin: 0; box-sizing: border-box; }
+			html, body { width: 1200px; height: 630px; overflow: hidden; }
+			body {
+				background-color: #f7f4ee;
+				background-image: radial-gradient(rgba(27, 25, 22, 0.14) 1.2px, transparent 1.2px);
+				background-size: 28px 28px;
+				color: #1b1916;
+				font-family: 'Instrument Sans', sans-serif;
+				padding: 72px 80px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.mark { display: flex; align-items: center; gap: 18px; font-size: 26px; font-weight: 500; }
+			.mark svg { width: 56px; height: 56px; }
+			h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 96px; line-height: 0.98; letter-spacing: -0.015em; max-width: 19ch; }
+			em { color: #b5491f; }
+			.foot { display: flex; justify-content: space-between; align-items: end; border-top: 2px solid #1b1916; padding-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; color: #4b4740; }
+		</style>
+	</head>
+	<body>
+		<div class="mark">
+			<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#1b1916" /><text x="25" y="46" text-anchor="middle" font-family="Instrument Serif" font-size="44" fill="#f7f4ee">A</text><circle cx="47" cy="42" r="4.5" fill="#b5491f" /></svg>
+			Adrien Poirson
+		</div>
+		<h1>I build software that turns complicated data into something <em>clear.</em></h1>
+		<div class="foot"><span>Software engineer — Vancouver</span><span>adrien-poirson.dev</span></div>
+	</body>
+</html>

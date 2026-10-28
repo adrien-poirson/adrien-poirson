@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Principles from '../components/Principles.astro';
+import Cta from '../components/Cta.astro';
+import { skills } from '../data/skills';
+import { site } from '../data/site';
+
+const description =
+	'About Adrien Poirson: a software engineer in Vancouver, originally from France, with over ten years on the front end of data products, and the toolbox that goes with it.';
+const facts = [
+	{ label: 'Now', value: `Software engineer at ${site.employer}` },
+	{ label: 'Based in', value: 'Vancouver, Canada' },
+	{ label: 'Languages', value: 'English and French' },
+	{ label: 'Education', value: 'Master in Information Systems and Software Development, UT1 Capitole, France' },
+	{ label: 'Off the clock', value: 'Kiteboarding, mountain biking, skiing' },
+];
+---
+
+<Layout title="About" description={description} pageType="AboutPage">
+	<section class="dotgrid">
+		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
+			<p class="eyebrow">About</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
+				Curious by default, front end by <em>choice.</em>
+			</h1>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+		<div class="grid gap-12 lg:grid-cols-12">
+			<div class="space-y-6 text-lg leading-relaxed text-ink-2 lg:col-span-7">
+				<p class="text-xl text-ink">
+					I am a software engineer in Vancouver, originally from France. I have spent over ten years on the client side of data products, where the impact of
+					the work is visible the moment it ships.
+				</p>
+				<p>
+					There is still something a little magical about watching an interface come to life and knowing it changes how someone gets through their day. That is
+					what has kept me on the front end: it is where software meets people. I am most at home in React and TypeScript, and comfortable enough with Node,
+					Python and databases to build the whole thing when a project needs it.
+				</p>
+				<p>
+					Curiosity does most of the steering. There is always something new in this field and I like that. I read, watch and build to keep up, and I have
+					changed how I work more than once because of it. Lately that means AI assistants in the loop every day. They make me faster, and I still read and
+					answer for every line.
+				</p>
+				<p>
+					I have worked remotely since 2018, with teams in Vancouver, Minneapolis and Austin. It taught me that clear writing, short feedback loops and showing
+					up reliably matter more than any tool. Technical skills get you into the room. Communication, adaptability and solving problems together are what make
+					a team good, and I bring those to every project on purpose.
+				</p>
+				<p>
+					These days I am a software engineer at {site.employer}, in Vancouver: healthcare policy data, which is to say a lot of it, and people who need the
+					right part of it quickly.
+				</p>
+			</div>
+			<dl class="grid gap-4 self-start lg:col-span-4 lg:col-start-9">
+				{facts.map(({ label, value }) => (
+					<div class="border-t border-rule pt-3">
+						<dt class="eyebrow">{label}</dt>
+						<dd class="mt-1.5 font-medium">{value}</dd>
+					</div>
+				))}
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Email</dt>
+					<dd class="mt-1.5 font-medium">
+						<a href={`mailto:${site.email}`} class="link">
+							{site.email}
+						</a>
+					</dd>
+				</div>
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Resume</dt>
+					<dd class="mt-1.5 font-medium">
+						<a href={site.resume} target="_blank" rel="noopener" class="link">
+							Download the PDF ↗
+						</a>
+					</dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+
+	<!-- Toolbox: a ledger, category on the left, tools on the right. -->
+	<section class="border-t border-ink">
+		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+			<div class="grid gap-10 lg:grid-cols-12">
+				<div class="lg:col-span-4">
+					<p class="eyebrow">02 — Toolbox</p>
+					<h2 class="heading mt-3 text-4xl sm:text-5xl">
+						What I <em>reach for.</em>
+					</h2>
+					<p class="mt-5 max-w-[34ch] leading-relaxed text-ink-2">Roughly in the order of how often. The list changes; the habit of learning it does not.</p>
+				</div>
+				<table class="w-full border-collapse text-left lg:col-span-8">
+					<tbody class="divide-y divide-rule border-y border-rule">
+						{skills.map(({ title, skills: items }) => (
+							<tr class="block align-baseline sm:table-row">
+								<th scope="row" class="eyebrow block pt-4 pb-1 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:py-4">
+									{title}
+								</th>
+								<td class="block pb-4 text-[1.05rem] leading-relaxed text-ink sm:table-cell sm:py-4">{items.join(', ')}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<Principles index="03" />
+
+	<Cta />
+</Layout>

@@ -1,0 +1,42 @@
+---
+import { aiPractice as copy } from '../data/ai';
+---
+
+<section class="border-t border-ink">
+	<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+		<div class="grid gap-6 lg:grid-cols-12">
+			<div class="lg:col-span-4">
+				<p class="eyebrow">{copy.eyebrow}</p>
+				<h2 class="heading mt-3 text-4xl sm:text-5xl">
+					{copy.heading[0]}
+					<em>{copy.heading[1]}</em>
+				</h2>
+			</div>
+			<p class="max-w-[44ch] self-end text-lg leading-relaxed text-ink-2 lg:col-span-6 lg:col-start-7">{copy.lead}</p>
+		</div>
+
+		<ol class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
+			{copy.items.map(({ title, body }, i) => (
+				<li class="ruled pt-5">
+					<p class="mono text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+					<h3 class="heading mt-3 text-2xl">{title}</h3>
+					<p class="mt-3 max-w-[58ch] leading-relaxed text-ink-2">{body}</p>
+				</li>
+			))}
+		</ol>
+
+		<div class="mt-14 grid gap-6 lg:grid-cols-12">
+			<p class="eyebrow pt-5 lg:col-span-4">{copy.builtTitle}</p>
+			<ul class="lg:col-span-8">
+				{copy.built.map(({ name, blurb, href }) => (
+					<li class="border-t border-rule last:border-b">
+						<a href={href} class="group grid gap-1 py-4 sm:grid-cols-[13rem_1fr] sm:gap-6">
+							<span class="heading text-xl transition-colors group-hover:text-accent">{name} →</span>
+							<span class="leading-relaxed text-ink-2">{blurb}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</div>
+</section>

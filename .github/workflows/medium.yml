@@ -1,0 +1,30 @@
+# Once a day, pull new Medium articles into src/data/articles.json and commit them to main.
+# The push makes Netlify rebuild, so a new article shows on /blog/ within a day. Run it by hand from the Actions tab to skip the wait.
+name: Sync Medium articles
+
+on:
+  schedule:
+    - cron: '0 14 * * *' # 7am in Vancouver
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # The script uses only Node built-ins, so there is nothing to install.
+      - run: node scripts/medium.mjs
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet src/data/articles.json; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898333+github-actions[bot]@users.noreply.github.com'
+          git add src/data/articles.json
+          git commit -m 'Sync Medium articles'
+          git push
