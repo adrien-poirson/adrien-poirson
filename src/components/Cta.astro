@@ -1,0 +1,53 @@
+---
+// The closing block on every page: a line in the serif and the email address as the biggest link on the page.
+import { site } from '../data/site';
+
+interface Props {
+	title?: string;
+	body?: string;
+}
+const {
+	title = 'Say hello.',
+	body = 'Something you are building, a question about front-end work, a note about something you read here, or just hello. I like hearing from people, and I write back.',
+} = Astro.props;
+---
+
+<section class="border-t border-ink">
+	<div class="mx-auto grid max-w-5xl gap-8 px-6 py-16 lg:grid-cols-12 lg:py-24">
+		<div class="lg:col-span-4">
+			<p class="eyebrow">Contact</p>
+			<h2 class="heading mt-3 text-4xl sm:text-5xl">{title}</h2>
+		</div>
+		<div class="lg:col-span-8">
+			<a
+				href={`mailto:${site.email}`}
+				class="heading inline-block break-all text-[1.75rem] text-ink underline decoration-accent decoration-1 underline-offset-8 transition-colors hover:text-accent sm:text-4xl lg:text-5xl"
+			>
+				{site.email}
+			</a>
+			<p class="mt-6 max-w-[52ch] leading-relaxed text-ink-2">{body}</p>
+			<ul class="dotted-list mono mt-6 text-ink-2">
+				<li>
+					<a href="/contact/" class="link">
+						Contact form
+					</a>
+				</li>
+				<li>
+					<a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="link">
+						LinkedIn
+					</a>
+				</li>
+				<li>
+					<a href={site.github} target="_blank" rel="noopener noreferrer" class="link">
+						GitHub
+					</a>
+				</li>
+				<li>
+					<a href={site.resume} target="_blank" rel="noopener" class="link">
+						Resume (PDF)
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

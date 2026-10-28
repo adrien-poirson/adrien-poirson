@@ -1,0 +1,273 @@
+@import 'tailwindcss';
+
+/* Theme is set on <html data-theme="light|dark"> by the inline script in Layout.astro. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+  Palette: warm paper and near-black ink, with one rust accent for the word that matters, links and
+  the primary button on hover. Flat surfaces, solid one-pixel rules, no gradients and no glass.
+*/
+:root {
+	color-scheme: light;
+	--paper: #f7f4ee;
+	--paper-2: #efeae0;
+	--ink: #1b1916;
+	--ink-2: #4b4740;
+	--ink-3: #857d71;
+	--rule: #ddd6c9;
+	--rule-strong: #b9af9e;
+	--accent: #b5491f;
+	--accent-2: #8f3814;
+	--grid: rgba(27, 25, 22, 0.14);
+}
+
+[data-theme='dark'] {
+	color-scheme: dark;
+	--paper: #161412;
+	--paper-2: #1f1c18;
+	--ink: #ede7dc;
+	--ink-2: #b9b0a2;
+	--ink-3: #7f776b;
+	--rule: #2c2822;
+	--rule-strong: #46403a;
+	--accent: #e4805a;
+	--accent-2: #f0a080;
+	--grid: rgba(237, 231, 220, 0.1);
+}
+
+@theme inline {
+	--font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	--color-paper: var(--paper);
+	--color-paper-2: var(--paper-2);
+	--color-ink: var(--ink);
+	--color-ink-2: var(--ink-2);
+	--color-ink-3: var(--ink-3);
+	--color-rule: var(--rule);
+	--color-rule-strong: var(--rule-strong);
+	--color-accent: var(--accent);
+	--color-accent-2: var(--accent-2);
+}
+
+@layer base {
+	html {
+		font-size: 106.25%; /* 17px body */
+		-webkit-font-smoothing: antialiased;
+		scroll-behavior: smooth;
+	}
+
+	::selection {
+		background: color-mix(in srgb, var(--accent) 22%, transparent);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+}
+
+/* Display type: the serif, regular weight, tight. The one word that carries the idea is <em>, italic and rust. */
+@utility display {
+	font-family: var(--font-serif);
+	font-weight: 400;
+	letter-spacing: -0.02em;
+	line-height: 0.98;
+	text-wrap: balance;
+	& em {
+		font-style: italic;
+		color: var(--accent);
+	}
+}
+@utility heading {
+	font-family: var(--font-serif);
+	font-weight: 400;
+	letter-spacing: -0.015em;
+	line-height: 1.05;
+	text-wrap: balance;
+	& em {
+		font-style: italic;
+		color: var(--accent);
+	}
+}
+
+/* Small mono labels: section numbers, dates, field labels. */
+@utility eyebrow {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+@utility mono {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	letter-spacing: 0.01em;
+}
+
+/* A faint dot grid, like graph paper, fading out toward the bottom. On a pseudo-element so the text above it never fades. */
+@utility dotgrid {
+	position: relative;
+	isolation: isolate;
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background-image: radial-gradient(var(--grid) 1px, transparent 1.2px);
+		background-size: 22px 22px;
+		mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+		-webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+		pointer-events: none;
+	}
+}
+
+/* Buttons are pills. Fill is ink that turns rust on hover; line is an outline that darkens. */
+@utility btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	border-radius: 999px;
+	padding: 0.8rem 1.35rem;
+	font-size: 0.95rem;
+	font-weight: 500;
+	line-height: 1.1;
+	white-space: nowrap;
+	color: var(--ink);
+	border: 1px solid transparent;
+	transition:
+		background-color 180ms,
+		border-color 180ms,
+		color 180ms;
+	&:disabled {
+		opacity: 0.6;
+		cursor: progress;
+	}
+	& .btn-icon {
+		width: 1.1em;
+		height: 1.1em;
+		flex-shrink: 0;
+		transition: transform 200ms;
+	}
+	&:hover .btn-icon-arrow-right {
+		transform: translateX(3px);
+	}
+	&:hover .btn-icon-arrow-left {
+		transform: translateX(-3px);
+	}
+	&:hover .btn-icon-arrow-up-right,
+	&:hover .btn-icon-send {
+		transform: translate(2px, -2px);
+	}
+}
+@utility btn-fill {
+	background: var(--ink);
+	color: var(--paper);
+	border-color: var(--ink);
+	&:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+}
+@utility btn-line {
+	border-color: var(--rule-strong);
+	background: transparent;
+	&:hover {
+		border-color: var(--ink);
+	}
+}
+
+/* Inline links: rust underline, rust text on hover. */
+@utility link {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	transition: color 150ms;
+	&:hover {
+		color: var(--accent);
+	}
+}
+
+/* Underline fields: a baseline rule instead of a box. Ink on focus, rust once a typed value is invalid. */
+@utility field {
+	display: block;
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid var(--rule-strong);
+	border-radius: 0;
+	background: transparent;
+	padding: 0.6rem 0;
+	font-size: 1.1rem;
+	line-height: 1.5;
+	color: var(--ink);
+	transition: border-color 150ms;
+	&::placeholder {
+		color: var(--ink-3);
+	}
+	&:hover {
+		border-color: var(--ink-2);
+	}
+	&:focus {
+		outline: none;
+		border-color: var(--ink);
+		box-shadow: 0 1px 0 var(--ink);
+	}
+	&:user-invalid {
+		border-color: var(--accent);
+	}
+}
+
+/* The timeline rail on the work page: a vertical rule with a dot for each entry, the first one rust. */
+@utility rail {
+	position: relative;
+	border-left: 1px solid var(--rule-strong);
+	& > li {
+		position: relative;
+	}
+	& > li::before {
+		content: '';
+		position: absolute;
+		left: calc(-0.5px - 0.3rem);
+		top: 3.1rem;
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 999px;
+		background: var(--paper);
+		border: 1.5px solid var(--ink);
+	}
+	& > li:first-child::before {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+}
+
+/* A list of short things separated by middle dots instead of boxes. */
+@utility dotted-list {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 0.6em;
+	row-gap: 0.35em;
+	& > li + li::before {
+		content: '·';
+		color: var(--ink-3);
+		margin-right: 0.6em;
+	}
+}
+
+/* A solid ink line on top, for the columns that need a firm start. */
+@utility ruled {
+	border-top: 1px solid var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.btn .btn-icon {
+		transition: none;
+	}
+}

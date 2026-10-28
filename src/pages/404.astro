@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="Page not found" noindex>
+	<section class="dotgrid">
+		<div class="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-24 lg:pb-28 lg:pt-32">
+			<p class="eyebrow">404</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem]">
+				There is nothing at this <em>address.</em>
+			</h1>
+			<p class="mt-8 max-w-[44ch] text-xl leading-relaxed text-ink-2">The page may have moved, or the link may be wrong.</p>
+			<Button href="/" variant="line" icon="arrow-left" class="mt-8">
+				Back to the home page
+			</Button>
+		</div>
+	</section>
+</Layout>

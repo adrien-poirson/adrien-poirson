@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const description = 'Say hello to Adrien Poirson, software engineer in Vancouver. Something you are building, a question about front-end work, or just hello.';
+---
+
+<Layout title="Contact" description={description} pageType="ContactPage">
+	<section class="dotgrid">
+		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
+			<p class="eyebrow">Contact</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
+				Always happy to <em>talk shop.</em>
+			</h1>
+			<p class="mt-10 max-w-[48ch] text-xl leading-relaxed text-ink-2">
+				Something you are building, a question about front-end work, a note about something you read here, or just hello. I like hearing from people, and I
+				write back.
+			</p>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+		<div class="grid gap-12 lg:grid-cols-12">
+			<div class="lg:col-span-7">
+				<!-- The form posts to Netlify Forms. The script sends it in place and shows the thank-you; without JS, Netlify redirects back here with ?sent=1. -->
+				<form
+					id="contact-form"
+					name="contact"
+					method="POST"
+					action="/contact/?sent=1"
+					data-netlify="true"
+					netlify-honeypot="bot-field"
+					class="grid gap-9 sm:grid-cols-2"
+				>
+					<input type="hidden" name="form-name" value="contact" />
+					<!-- Left empty by people, filled by bots. -->
+					<p class="hidden" aria-hidden="true">
+						<label>
+							Do not fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" />
+						</label>
+					</p>
+					<div>
+						<label for="name" class="eyebrow">
+							Name
+						</label>
+						<input id="name" name="name" type="text" autocomplete="name" required maxlength="200" class="field mt-1" />
+					</div>
+					<div>
+						<label for="email" class="eyebrow">
+							Email
+						</label>
+						<input id="email" name="email" type="email" autocomplete="email" required maxlength="320" class="field mt-1" />
+					</div>
+					<div class="sm:col-span-2">
+						<label for="message" class="eyebrow">
+							Message
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="5"
+							required
+							minlength="10"
+							maxlength="5000"
+							placeholder="What it is, who it is for, and when."
+							class="field mt-1 resize-y"
+						></textarea>
+					</div>
+					<div class="flex flex-wrap items-center gap-x-6 gap-y-3 sm:col-span-2">
+						<Button type="submit" icon="send" data-submit>
+							Send message
+						</Button>
+						<p data-status class="text-[0.95rem] text-ink-2" aria-live="polite"></p>
+					</div>
+				</form>
+				<div data-sent hidden class="border-t border-ink pt-6">
+					<p class="eyebrow">Sent</p>
+					<h2 class="heading mt-3 text-4xl">
+						Thank you, it is on its <em>way.</em>
+					</h2>
+					<p class="mt-4 max-w-[44ch] leading-relaxed text-ink-2">I will write back from {site.email}.</p>
+				</div>
+			</div>
+
+			<dl class="grid gap-4 self-start lg:col-span-4 lg:col-start-9">
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Prefer email?</dt>
+					<dd class="mt-1.5 font-medium">
+						<a href={`mailto:${site.email}`} class="link">
+							{site.email}
+						</a>
+					</dd>
+				</div>
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Usually</dt>
+					<dd class="mt-1.5 font-medium">Within a few days</dd>
+				</div>
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Based in</dt>
+					<dd class="mt-1.5 font-medium">Vancouver, Pacific time</dd>
+				</div>
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Elsewhere</dt>
+					<dd class="mt-1.5 font-medium">
+						<a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="link">
+							LinkedIn
+						</a>{' '}
+						and{' '}
+						<a href={site.github} target="_blank" rel="noopener noreferrer" class="link">
+							GitHub
+						</a>
+					</dd>
+				</div>
+				<div class="border-t border-rule pt-3">
+					<dt class="eyebrow">Resume</dt>
+					<dd class="mt-1.5 font-medium">
+						<a href={site.resume} target="_blank" rel="noopener" class="link">
+							Download the PDF ↗
+						</a>
+					</dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+</Layout>
+
+<script>
+	const form = document.getElementById('contact-form') as HTMLFormElement | null;
+	const sent = document.querySelector<HTMLElement>('[data-sent]');
+	const status = document.querySelector<HTMLElement>('[data-status]');
+	const submit = document.querySelector<HTMLButtonElement>('[data-submit]');
+
+	const showSent = () => {
+		if (!form || !sent) return;
+		form.hidden = true;
+		sent.hidden = false;
+		const h = sent.querySelector<HTMLElement>('h2');
+		h?.setAttribute('tabindex', '-1');
+		h?.focus();
+	};
+
+	// Back from Netlify's redirect, without JS having sent the form.
+	if (new URLSearchParams(location.search).get('sent') === '1') {
+		showSent();
+		history.replaceState(null, '', location.pathname);
+	}
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		if (!form.reportValidity()) return;
+		if (submit) submit.disabled = true;
+		if (status) status.textContent = 'Sending…';
+		try {
+			const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+			const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+			if (!res.ok) throw new Error(String(res.status));
+			form.reset();
+			showSent();
+		} catch {
+			if (status)
+				status.innerHTML =
+					'Something went wrong. Please try again, or write to <a class="link" href="mailto:adrien.poirson@gmail.com">adrien.poirson@gmail.com</a>.';
+			if (submit) submit.disabled = false;
+		}
+	});
+</script>

@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+// A link when given an href, otherwise a <button>. Fill is the primary, line the quieter secondary. The icon trails the label.
+type Icon = 'arrow-right' | 'arrow-left' | 'arrow-up-right' | 'send';
+type Props = {
+	variant?: 'fill' | 'line';
+	href?: string;
+	icon?: Icon;
+	class?: string;
+} & HTMLAttributes<'a'> &
+	HTMLAttributes<'button'>;
+
+const { variant = 'fill', href, icon, type = 'button', class: className, ...rest } = Astro.props;
+const classes = ['btn', variant === 'fill' ? 'btn-fill' : 'btn-line', className];
+
+const icons: Record<Icon, string> = {
+	'arrow-right': '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+	'arrow-left': '<path d="M19 12H5"/><path d="m11 6-6 6 6 6"/>',
+	'arrow-up-right': '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>',
+	send: '<path d="M14.5 21.7a.5.5 0 0 0 .9 0l6.5-19a.5.5 0 0 0-.6-.6l-19 6.5a.5.5 0 0 0 0 .9l7.9 3.2a2 2 0 0 1 1.1 1.1z"/><path d="m21.9 2.1-11 11"/>',
+};
+const Tag = href ? 'a' : 'button';
+const tagProps = href ? { href } : { type };
+---
+
+<Tag {...tagProps} class:list={classes} {...rest}>
+	<slot />
+	{icon && (
+		<svg
+			viewBox="0 0 24 24"
+			class:list={['btn-icon', `btn-icon-${icon}`]}
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+			set:html={icons[icon]}
+		/>
+	)}
+</Tag>

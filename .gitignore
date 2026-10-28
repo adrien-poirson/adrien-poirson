@@ -1,4 +1,24 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
 node_modules/
-.cache/
-public
-.DS_STORE
+
+# logs
+npm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# editors
+.idea/
+
+# Yarn
+.yarn/*
+.pnp.*

@@ -1,0 +1,139 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Cta from '../components/Cta.astro';
+import { roles, projects } from '../data/experience';
+
+const description =
+	'Adrien Poirson’s work, in order: PolicyReporter, CS Disco, Global Relay, Calabrio, Cumul8, Thinkingbox and JCOMMOPS, plus personal projects.';
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+---
+
+<Layout title="Work" description={description} pageType="CollectionPage">
+	<section class="dotgrid">
+		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
+			<p class="eyebrow">Work — {roles.length} roles, newest first</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
+				A decade on the front end of <em>data.</em>
+			</h1>
+			<p class="mt-10 max-w-[52ch] text-xl leading-relaxed text-ink-2">
+				I started on ocean-research data in France and moved to Vancouver in 2015. Since then nearly every role has been the same problem in a new domain: a lot
+				of data, and people who need to understand it quickly.
+			</p>
+		</div>
+	</section>
+
+	<!-- The timeline: a rail down the left, the company and dates sticky beside the story on wide screens. -->
+	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+		<ol class="rail ml-1 sm:ml-2">
+			{roles.map(({ company, url, location, role, period, story, highlights, link, image, imageAlt }) => (
+				<li id={slug(company)} class="grid scroll-mt-28 gap-6 py-10 pl-7 sm:pl-10 lg:grid-cols-12 lg:gap-10 lg:py-14">
+					<div class="lg:sticky lg:top-24 lg:col-span-4 lg:self-start">
+						<p class="mono text-ink-3">{period}</p>
+						<h2 class="heading mt-2 text-3xl sm:text-4xl">{company}</h2>
+						<p class="mt-3 font-medium">{role}</p>
+						<p class="mt-1 text-[0.95rem] text-ink-2">{location}</p>
+						{url && (
+							<a href={url} target="_blank" rel="noopener" class="link mono mt-4 inline-block">
+								{host(url)} ↗
+							</a>
+						)}
+					</div>
+					<div class="lg:col-span-8">
+						<div class="max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-2">
+							{story.map((p) => (
+								<p>{p}</p>
+							))}
+						</div>
+						{highlights && (
+							<ul class="mt-8 border-t border-rule">
+								{highlights.map((item) => (
+									<li class="grid gap-3 border-b border-rule py-4 sm:grid-cols-[2rem_1fr]">
+										<span class="mt-[0.7rem] block h-px w-4 bg-accent" aria-hidden="true" />
+										<span class="leading-relaxed">{item}</span>
+									</li>
+								))}
+							</ul>
+						)}
+						{link && (
+							<a href={link.href} target="_blank" rel="noopener" class="link mt-6 inline-block font-medium">
+								{link.label} ↗
+							</a>
+						)}
+						{image && (
+							<figure class="mt-8">
+								<Image
+									src={image}
+									alt={imageAlt ?? company}
+									widths={[480, 800, 1200, 1600]}
+									sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
+									class="h-auto w-full border border-rule-strong"
+								/>
+								<figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>
+							</figure>
+						)}
+					</div>
+				</li>
+			))}
+		</ol>
+	</section>
+
+	<!-- Personal projects -->
+	<section class="bg-paper-2">
+		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+			<div class="grid gap-10 lg:grid-cols-12">
+				<div class="lg:col-span-4">
+					<p class="eyebrow">On my own time</p>
+					<h2 class="heading mt-3 text-4xl sm:text-5xl">
+						Projects that started as an <em>itch.</em>
+					</h2>
+				</div>
+				<ol class="lg:col-span-8">
+					{projects.map(({ name, url, period, story, stack, image, imageAlt }) => (
+						<li id={slug(name)} class="scroll-mt-28 border-t border-rule py-8 last:border-b">
+							<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+								<h3 class="heading text-3xl">
+									{url ? (
+										<a href={url} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+											{name} ↗
+										</a>
+									) : (
+										name
+									)}
+								</h3>
+								<p class="mono text-ink-3">{period}</p>
+							</div>
+							<div class="mt-4 max-w-[62ch] space-y-3 text-lg leading-relaxed text-ink-2">
+								{story.map((p) => (
+									<p>{p}</p>
+								))}
+							</div>
+							<ul class="dotted-list mono mt-5 text-ink-2">
+								{stack.map((s) => (
+									<li>{s}</li>
+								))}
+							</ul>
+							{image && (
+								<figure class="mt-6">
+									<Image
+										src={image}
+										alt={imageAlt ?? name}
+										widths={[480, 800, 1200, 1600]}
+										sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
+										class="h-auto w-full border border-rule-strong"
+									/>
+								</figure>
+							)}
+						</li>
+					))}
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<Cta
+		title="Curious about any of this?"
+		body="Happy to go into the details of any of it, or to compare notes if you have solved the same problems differently."
+	/>
+</Layout>
