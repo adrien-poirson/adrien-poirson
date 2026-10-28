@@ -3,10 +3,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/Button.astro';
 import ResumeSheet from '../../components/ResumeSheet.astro';
-import { site } from '../../data/site';
+import { experience, site } from '../../data/site';
 
 const description =
-	'Resume of Adrien Poirson, software engineer in Vancouver: over ten years on the front end of data products, in React and TypeScript.';
+	`Resume of Adrien Poirson, software engineer in Vancouver: over ${experience.words} years on the front end of data products, in React and TypeScript.`;
 ---
 
 <Layout title="Resume" description={description}>

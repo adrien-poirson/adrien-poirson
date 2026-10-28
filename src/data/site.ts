@@ -1,3 +1,9 @@
+// Years since my first job, in April 2014, worked out at build time so the number moves on with each rebuild.
+const careerStart = Date.UTC(2014, 3, 1);
+const years = Math.floor((Date.now() - careerStart) / (365.25 * 24 * 60 * 60 * 1000));
+const numberWords = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+export const experience = { years, words: numberWords[years - 10] ?? String(years) };
+
 // The few facts every page shares.
 export const site = {
 	name: 'Adrien Poirson',
@@ -11,7 +17,7 @@ export const site = {
 	linkedin: 'https://www.linkedin.com/in/adrienpoirson',
 	employer: 'PolicyReporter',
 	description:
-		'Adrien Poirson is a software engineer in Vancouver with over ten years on the front end of data products: analytics dashboards, reporting tools and data explorers, built in React and TypeScript.',
+		`Adrien Poirson is a software engineer in Vancouver with over ${experience.words} years on the front end of data products: analytics dashboards, reporting tools and data explorers, built in React and TypeScript.`,
 };
 
 export const nav = [

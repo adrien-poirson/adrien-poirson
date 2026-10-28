@@ -3,10 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Principles from '../components/Principles.astro';
 import Cta from '../components/Cta.astro';
 import { skills } from '../data/skills';
-import { site } from '../data/site';
+import { experience, site } from '../data/site';
 
 const description =
-	'About Adrien Poirson: a software engineer in Vancouver, originally from France, with over ten years on the front end of data products, and the toolbox that goes with it.';
+	`About Adrien Poirson: a software engineer in Vancouver, originally from France, with over ${experience.words} years on the front end of data products, and the toolbox that goes with it.`;
 const facts = [
 	{ label: 'Now', value: `Software engineer at ${site.employer}` },
 	{ label: 'Based in', value: 'Vancouver, Canada' },
@@ -30,7 +30,7 @@ const facts = [
 		<div class="grid gap-12 lg:grid-cols-12">
 			<div class="space-y-6 text-lg leading-relaxed text-ink-2 lg:col-span-7">
 				<p class="text-xl text-ink">
-					I am a software engineer in Vancouver, originally from France. I have spent over ten years on the client side of data products, where the impact of
+					I am a software engineer in Vancouver, originally from France. I have spent over {experience.words} years on the client side of data products, where the impact of
 					the work is visible the moment it ships.
 				</p>
 				<p>
@@ -90,11 +90,17 @@ const facts = [
 				<table class="w-full border-collapse text-left lg:col-span-8">
 					<tbody class="divide-y divide-rule border-y border-rule">
 						{skills.map(({ title, skills: items }) => (
-							<tr class="block align-baseline sm:table-row">
-								<th scope="row" class="eyebrow block pt-4 pb-1 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:py-4">
+							<tr class="block align-top sm:table-row">
+								<th scope="row" class="eyebrow block pt-5 pb-2.5 pr-4 font-medium sm:table-cell sm:w-[13rem] sm:pb-4 sm:pt-[1.45rem]">
 									{title}
 								</th>
-								<td class="block pb-4 text-[1.05rem] leading-relaxed text-ink sm:table-cell sm:py-4">{items.join(', ')}</td>
+								<td class="block pb-5 sm:table-cell sm:py-4">
+									<ul class="flex flex-wrap gap-2">
+										{items.map((item) => (
+											<li class="rounded-full border border-rule bg-paper-2 px-3 py-1 text-[0.92rem] leading-snug text-ink">{item}</li>
+										))}
+									</ul>
+								</td>
 							</tr>
 						))}
 					</tbody>

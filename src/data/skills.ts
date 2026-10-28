@@ -21,8 +21,10 @@ export const skills: SkillGroup[] = [
 export interface Offer {
 	title: string;
 	body: string;
-	/** A 24x24 SVG path drawn as a line icon beside the title. */
+	/** A 24x24 SVG path, drawn as a large faint line icon behind the item. */
 	icon: string;
+	/** The part of the icon drawn in rust: the detail that matches the paragraph. */
+	accent: string;
 	featured?: boolean;
 }
 
@@ -30,23 +32,31 @@ export interface Offer {
 export const offers: Offer[] = [
 	{
 		title: 'Dashboards and data visualization',
-		icon: 'M3 20h18M6 17V9M11 17V4M16 17v-6M21 17v-3',
+		// Axes and bars, with a trend line on top ending on a rust point.
+		icon: 'M3 3v18h18M7 17v-3M11 17v-6M15 17v-4M19 17v-8',
+		accent: 'M7 10l4-4 4 3 4-5M19 4h.01',
 		body: 'Analytics dashboards, reporting tools and data explorers for legal, contact-centre and research platforms. Tables with millions of rows that still feel instant, charts that answer a question, and a pivot table built from scratch when no library would do.',
 		featured: true,
 	},
 	{
 		title: 'Web applications',
-		icon: 'M3 5h18v14H3zM3 9h18M6 7h.01M9 7h.01',
+		// A browser window with an app laid out inside it.
+		icon: 'M3 5h18v14H3zM3 9h18M6 7h.01M9 7h.01M6.5 12.5h5M6.5 15.5h3',
+		accent: 'M14.5 12.5h3v3.5h-3z',
 		body: 'Customer-facing products and internal tools in React and TypeScript, from the first component to the deploy pipeline, with the back end and the database when the project needs them.',
 	},
 	{
 		title: 'Design systems and component libraries',
-		icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+		// Building blocks, one of them a different shape: a set of components.
+		icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4z',
+		accent: 'M16.5 13a3.5 3.5 0 1 1 0 7a3.5 3.5 0 1 1 0-7z',
 		body: 'Shared UI libraries that keep a product consistent and a team fast. I have built or maintained one at nearly every company I have worked for.',
 	},
 	{
 		title: 'Performance and modernisation',
-		icon: 'M12 4a8 8 0 0 0-8 8c0 2.2.9 4.2 2.3 5.7M12 4a8 8 0 0 1 8 8c0 2.2-.9 4.2-2.3 5.7M12 12l4-3M12 12a1 1 0 1 0 0 .01',
+		// A speed gauge, the needle near the top of the dial.
+		icon: 'M5.6 18.4a9 9 0 1 1 12.8 0M12 5v1.5M5.9 8.6l1.3.8M18.1 8.6l-1.3.8M4.5 13.5H6M18 13.5h1.5',
+		accent: 'M12 14.5l4.5-5M12 14.5h.01',
 		body: 'Legacy code brought up to date and slow pages made quick: virtualization, smarter data fetching, class components turned into hooks, Java and GWT replaced with React.',
 	},
 ];
