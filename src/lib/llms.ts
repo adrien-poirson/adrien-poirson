@@ -15,7 +15,7 @@ const header = [
 	'',
 	`${site.name} is a ${site.role.toLowerCase()} at ${site.employer}, based in Vancouver, Canada. Works in English and French, remote since 2018, with a Master in Information Systems and Software Development from UT1 Capitole, France.`,
 	'',
-	`Contact: ${site.email} · LinkedIn: ${site.linkedin} · GitHub: ${site.github}`,
+	`Contact: ${site.url}/contact/ · LinkedIn: ${site.linkedin} · GitHub: ${site.github}`,
 ];
 
 const pages = [
@@ -24,7 +24,7 @@ const pages = [
 	`- [About](${url('/about/')}): background, toolbox and principles.`,
 	`- [Blog](${url('/blog/')}): articles, published on Medium.`,
 	`- [Contact](${url('/contact/')}): how to get in touch.`,
-	`- [Resume (PDF)](${url(site.resume)}): the one-page resume.`,
+	`- [Resume](${url(site.resume)}): the resume, with a PDF to download at ${url(site.resumePdf)}.`,
 ];
 
 // One line per article, newest first. The articles themselves are on Medium.

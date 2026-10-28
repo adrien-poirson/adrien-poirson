@@ -1,5 +1,5 @@
-// Prints /resume/ from the built site to public/ResumeAdrienPoirson.pdf with headless Chrome.
-// Run `yarn build` first (the `resume` script does). Set CHROME to use another Chrome or Chromium binary.
+// Prints /resume/print/ from the built site to public/ResumeAdrienPoirson.pdf with headless Chrome.
+// Needs a build with RESUME_PDF=1 first, which the `resume` script does (and rebuilds without it after). Set CHROME to use another Chrome or Chromium binary.
 import { spawn, execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -13,7 +13,7 @@ if (!existsSync(chrome)) {
 }
 
 const preview = spawn('npx', ['astro', 'preview', '--port', String(port)], { stdio: 'ignore' });
-const url = `http://localhost:${port}/resume/`;
+const url = `http://localhost:${port}/resume/print/`;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 try {
 	let up = false;

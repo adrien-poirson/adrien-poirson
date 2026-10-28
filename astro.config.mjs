@@ -9,8 +9,8 @@ export default defineConfig({
 	site: 'https://adrien-poirson.dev',
 	// Every URL ends in a slash, so canonicals, the sitemap and the links all agree.
 	trailingSlash: 'always',
-	// The resume page is noindex (the PDF is the one to share), so it stays out of the sitemap too.
-	integrations: [sitemap({ filter: (page) => !page.endsWith('/resume/') })],
+	// /resume/print/ only exists in `yarn resume` builds, to print the PDF, and never belongs in the sitemap.
+	integrations: [sitemap({ filter: (page) => !page.endsWith('/resume/print/') })],
 	build: { inlineStylesheets: 'always' },
 	// Cover images for /blog/ come from Medium's CDN and are resized at build time like the local ones.
 	image: { domains: ['cdn-images-1.medium.com', 'miro.medium.com'] },

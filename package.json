@@ -14,7 +14,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "resume": "astro build && node scripts/resume-pdf.mjs",
+    "resume": "RESUME_PDF=1 astro build && node scripts/resume-pdf.mjs && astro build",
     "og": "node scripts/og-image.mjs",
     "medium": "node scripts/medium.mjs"
   },
