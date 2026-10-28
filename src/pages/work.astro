@@ -104,10 +104,16 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 				<p class="max-w-[46ch] self-end text-lg leading-relaxed text-ink-2 lg:col-span-5 lg:col-start-8">{pipeline.lead}</p>
 			</div>
 			<ol class="mt-12 lg:mt-14">
-				{pipeline.steps.map(({ title, body, tools }, i) => (
+				{pipeline.steps.map(({ title, icon, accent, body, tools }, i) => (
 					<li class="grid gap-x-10 gap-y-3 py-5 sm:grid-cols-[3rem_1fr] lg:grid-cols-[3rem_11rem_1fr_15rem] lg:items-baseline">
 						<p class="mono text-accent">{String(i + 1).padStart(2, '0')}</p>
-						<h3 class="heading text-2xl">{title}</h3>
+						<h3 class="heading flex items-center gap-3 text-2xl">
+							<svg class="size-7 shrink-0" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d={icon} class="stroke-ink-3" />
+								<path d={accent} class="stroke-accent" stroke-width="1.8" />
+							</svg>
+							{title}
+						</h3>
 						<p class="leading-relaxed text-ink-2 sm:col-start-2 lg:col-start-auto">{body}</p>
 						<ul class="flex flex-wrap gap-1.5 sm:col-start-2 lg:col-start-auto">
 							{tools.map((t) => (
