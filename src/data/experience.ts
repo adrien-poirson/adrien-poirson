@@ -211,7 +211,7 @@ export const projects: Project[] = [
 		],
 		stack: ['TypeScript', 'React', 'styled-components', 'Firebase', 'Cloud Functions', 'Playwright', 'GitHub Actions'],
 		image: journal,
-		imageAlt: 'My Personal Journal: an entry open in the book, beside the index of past entries.',
+		imageAlt: 'My Personal Journal: an entry open in the book, beside the index of linked entries.',
 		imagePosition: 'top left',
 	},
 	{
