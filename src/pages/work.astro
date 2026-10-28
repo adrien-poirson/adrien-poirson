@@ -28,11 +28,11 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 	<!-- The timeline: a rail down the left, the company and dates sticky beside the story on wide screens. -->
 	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
 		<ol class="rail ml-1 sm:ml-2" data-timeline>
-			{roles.map(({ company, url, location, role, period, story, highlights, link, image, imageAlt }) => (
+			{roles.map(({ company, url, location, role, period, lead, stack, story, highlights, link, image, imageAlt, imagePosition }) => (
 				<li id={slug(company)} class="grid scroll-mt-28 gap-6 py-10 pl-7 sm:pl-10 lg:grid-cols-12 lg:gap-10 lg:py-14">
 					<div class="lg:sticky lg:top-24 lg:col-span-4 lg:self-start">
-						<p class="mono text-ink-3">{period}</p>
-						<h2 class="heading mt-2 text-3xl sm:text-4xl">{company}</h2>
+						<h2 class="heading text-3xl sm:text-4xl">{company}</h2>
+						<p class="mono mt-2 text-ink-3">{period}</p>
 						<p class="mt-3 font-medium">{role}</p>
 						<p class="mt-1 text-[0.95rem] text-ink-2">{location}</p>
 						{url && (
@@ -40,17 +40,23 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 								{host(url)} ↗
 							</a>
 						)}
+						<ul class="mt-5 flex flex-wrap gap-1.5">
+							{stack.map((s) => (
+								<li class="chip">{s}</li>
+							))}
+						</ul>
 					</div>
-					<div class="lg:col-span-8">
-						<div class="max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-2">
+					<div class="lg:col-span-8 lg:pt-14">
+						<p class="heading max-w-[40ch] text-2xl text-ink">{lead}</p>
+						<div class="mt-4 max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-2">
 							{story.map((p) => (
 								<p>{p}</p>
 							))}
 						</div>
 						{highlights && (
-							<ul class="mt-8 border-t border-rule">
+							<ul class="mt-8">
 								{highlights.map((item) => (
-									<li class="grid gap-3 border-b border-rule py-4 sm:grid-cols-[2rem_1fr]">
+									<li class="grid gap-3 py-2.5 sm:grid-cols-[2rem_1fr]">
 										<span class="mt-[0.7rem] block h-px w-4 bg-accent" aria-hidden="true" />
 										<span class="leading-relaxed">{item}</span>
 									</li>
@@ -71,6 +77,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 										widths={[480, 800, 1200, 1600]}
 										sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
 										class="h-auto w-full"
+										style={imagePosition && `object-position: ${imagePosition}`}
 									/>
 								</div>
 								{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
@@ -82,41 +89,40 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 		</ol>
 	</section>
 
-	<!-- Personal projects -->
+	<!-- Personal projects: the heading on top, then one row per project, its name and stack beside the story. -->
 	<section class="bg-paper-2">
 		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
-			<div class="grid gap-10 lg:grid-cols-12">
-				<div class="lg:col-span-4">
-					<p class="eyebrow">On my own time</p>
-					<h2 class="heading mt-3 text-4xl sm:text-5xl">
-						Projects that started as an <em>itch.</em>
-					</h2>
-				</div>
-				<ol class="lg:col-span-8">
-					{projects.map(({ name, url, period, story, stack, image, imageAlt }) => (
-						<li id={slug(name)} class="scroll-mt-28 border-t border-rule py-8 last:border-b">
-							<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-								<h3 class="heading text-3xl">
-									{url ? (
-										<a href={url} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
-											{name} ↗
-										</a>
-									) : (
-										name
-									)}
-								</h3>
-								<p class="mono text-ink-3">{period}</p>
-							</div>
+			<p class="eyebrow">On my own time</p>
+			<h2 class="heading mt-3 text-4xl sm:text-5xl">
+				Projects that started as an <em>itch.</em>
+			</h2>
+			<ol class="mt-6 lg:mt-10">
+				{projects.map(({ name, url, period, lead, story, stack, image, imageAlt, imagePosition }) => (
+					<li id={slug(name)} class="grid scroll-mt-28 gap-4 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10">
+						<div class="lg:col-span-4">
+							<h3 class="heading text-3xl">
+								{url ? (
+									<a href={url} target="_blank" rel="noopener" class="transition-colors hover:text-accent">
+										{name} ↗
+									</a>
+								) : (
+									name
+								)}
+							</h3>
+							<p class="mono mt-2 text-ink-3">{period}</p>
+							<ul class="mt-4 flex flex-wrap gap-1.5">
+								{stack.map((s) => (
+									<li class="chip">{s}</li>
+								))}
+							</ul>
+						</div>
+						<div class="lg:col-span-8 lg:pt-14">
+							<p class="heading max-w-[40ch] text-2xl text-ink">{lead}</p>
 							<div class="mt-4 max-w-[62ch] space-y-3 text-lg leading-relaxed text-ink-2">
 								{story.map((p) => (
 									<p>{p}</p>
 								))}
 							</div>
-							<ul class="dotted-list mono mt-5 text-ink-2">
-								{stack.map((s) => (
-									<li>{s}</li>
-								))}
-							</ul>
 							{image && (
 								<figure class="mt-6">
 									<div class="shot">
@@ -126,15 +132,16 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 											widths={[480, 800, 1200, 1600]}
 											sizes="(min-width: 1024px) 680px, calc(100vw - 3rem)"
 											class="h-auto w-full"
+											style={imagePosition && `object-position: ${imagePosition}`}
 										/>
 									</div>
 									{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
 								</figure>
 							)}
-						</li>
-					))}
-				</ol>
-			</div>
+						</div>
+					</li>
+				))}
+			</ol>
 		</div>
 	</section>
 

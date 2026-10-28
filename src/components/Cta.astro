@@ -1,5 +1,6 @@
 ---
 // The closing block on every page: a line in the serif and the contact form as the biggest link on the page.
+import Button from './Button.astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -12,7 +13,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="border-t border-ink">
+<section class="band">
 	<div class="mx-auto grid max-w-5xl gap-8 px-6 py-16 lg:grid-cols-12 lg:py-24">
 		<div class="lg:col-span-4">
 			<p class="eyebrow">Contact</p>
@@ -26,23 +27,9 @@ const {
 				Write me a note →
 			</a>
 			<p class="mt-6 max-w-[52ch] leading-relaxed text-ink-2">{body}</p>
-			<ul class="dotted-list mono mt-6 text-ink-2">
-				<li>
-					<a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="link">
-						LinkedIn
-					</a>
-				</li>
-				<li>
-					<a href={site.github} target="_blank" rel="noopener noreferrer" class="link">
-						GitHub
-					</a>
-				</li>
-				<li>
-					<a href={site.resume} class="link">
-						Resume
-					</a>
-				</li>
-			</ul>
+			<Button href={site.resume} variant="line" icon="arrow-right" class="mt-8">
+				Read my resume
+			</Button>
 		</div>
 	</div>
 </section>

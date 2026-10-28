@@ -53,7 +53,11 @@
 
 @layer base {
 	html {
-		font-size: 106.25%; /* 17px body */
+		/* 15px on phones, 17px from the sm breakpoint up; every size and space follows in rem. */
+		font-size: 93.75%;
+		@media (width >= 40rem) {
+			font-size: 106.25%;
+		}
 		-webkit-font-smoothing: antialiased;
 		scroll-behavior: smooth;
 	}
@@ -292,6 +296,24 @@
 	}
 }
 
+/* A small pill for a tag: outlined in light mode, filled like the logo tile in dark mode, for contrast. */
+@utility chip {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid var(--rule-strong);
+	border-radius: 999px;
+	padding: 0.3rem 0.7rem;
+	font-size: 0.8rem;
+	line-height: 1.25;
+	max-width: 100%;
+	color: var(--ink-2);
+	&:where([data-theme='dark'] *) {
+		background: var(--ink);
+		border-color: var(--ink);
+		color: var(--paper);
+	}
+}
+
 /* A list of short things separated by middle dots instead of boxes. */
 @utility dotted-list {
 	display: flex;
@@ -305,32 +327,62 @@
 	}
 }
 
-/* A solid ink line on top, for the columns that need a firm start. */
+/* A short tick on top that fades out, for the columns that need a start without a full line. */
 @utility ruled {
-	border-top: 1px solid var(--ink);
+	background: linear-gradient(to right, var(--ink-3), transparent) top left / 3rem 1px no-repeat;
 }
 
 /*
-  Screenshots sit in a laptop lid: a paper bezel rounded at the top, square at the bottom, with a
-  small camera dot, so a bright product UI does not float on the background. In dark mode they are
+  A section's start: instead of a line, a wash of the paper's darker tone at the top that fades
+  into the page, so sections read as bands.
+*/
+@utility band {
+	background: linear-gradient(to bottom, var(--paper-2), transparent 14rem);
+}
+
+/*
+  Screenshots sit in a laptop: a paper lid rounded at the top with a small camera dot, so a bright
+  product UI does not float on the background, and under it the base, flared for perspective and
+  fading out, with its keyboard and trackpad drawn in muted lines. In dark mode the screenshots are
   dimmed a little until hovered, so they do not glare.
 */
 @utility shot {
+	/* How far the base flares past the lid on each side; within the page gutter, so it never scrolls. */
+	--deck-flare: 1rem;
 	position: relative;
+	margin-bottom: 3.25rem;
 	padding: 1.1rem 0.6rem 0.6rem;
-	background: var(--paper-2);
+	background: radial-gradient(circle at 50% 0.55rem, var(--rule-strong) 0.15rem, transparent 0.16rem), var(--paper-2);
 	border: 1px solid var(--rule);
 	border-radius: 0.9rem 0.9rem 0 0;
-	&::before {
+	/* The base: ::before is its outline, ::after its surface, 1px inside it. */
+	&::before,
+	&::after {
 		content: '';
 		position: absolute;
-		top: 0.4rem;
-		left: 50%;
-		width: 0.3rem;
-		height: 0.3rem;
-		margin-left: -0.15rem;
-		border-radius: 999px;
-		background: var(--rule-strong);
+		top: calc(100% + 1px);
+		left: calc(-1 * var(--deck-flare));
+		right: calc(-1 * var(--deck-flare));
+		height: 3.25rem;
+		mask-image: linear-gradient(to bottom, #000 15%, transparent);
+		pointer-events: none;
+	}
+	&::before {
+		background: var(--rule);
+		clip-path: polygon(var(--deck-flare) 0, calc(100% - var(--deck-flare)) 0, 100% 100%, 0 100%);
+	}
+	&::after {
+		background:
+			/* The hinge. */
+			linear-gradient(var(--rule), var(--rule)) 50% 0 / calc(100% - 2 * var(--deck-flare)) 0.3rem no-repeat,
+			/* Two rows of keys, a little below the hinge. */
+			repeating-linear-gradient(90deg, var(--rule) 0 calc(100% / 13 - 0.25rem), transparent 0 calc(100% / 13)) 50% 1rem / 81% 0.35rem no-repeat,
+			repeating-linear-gradient(90deg, var(--rule) 0 calc(100% / 12 - 0.25rem), transparent 0 calc(100% / 12)) 50% 1.5rem / 82% 0.35rem no-repeat,
+			/* The trackpad: its top edge and two sides. */
+			linear-gradient(var(--rule), var(--rule)) 50% 2.15rem / 28% 1px no-repeat,
+			linear-gradient(90deg, var(--rule) 0 1px, transparent 1px calc(100% - 1px), var(--rule) 0) 50% 2.15rem / 28% 100% no-repeat,
+			var(--paper-2);
+		clip-path: polygon(calc(var(--deck-flare) + 1px) 0, calc(100% - var(--deck-flare) - 1px) 0, calc(100% - 1px) 100%, 1px 100%);
 	}
 	& img {
 		display: block;
