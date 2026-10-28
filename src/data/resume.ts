@@ -105,7 +105,7 @@ export const resume = {
 		{
 			name: 'Second brain',
 			period: 'Ongoing',
-			body: 'My notes, agent and apps on a headless Linux server I run at home, behind Tailscale. An Obsidian vault synced between Mac and iPhone through Self-hosted LiveSync and CouchDB instead of iCloud, encrypted on the device, with the plain Markdown committed to Git every 15 minutes. Docker stacks for photos, media and a dashboard of service health, AI spend and backups; nightly restic backups to Backblaze B2 and health checks that alert on Telegram. Operated by Hermes, an open-source agent, which shares one Git repository of skills with Claude Code, so a procedure is written once and either agent can run it.',
+			body: 'My notes, agents and apps on a headless Linux server I run at home, with no open ports, behind Tailscale. An Obsidian vault moved off iCloud: Self-hosted LiveSync and CouchDB, encrypted on the device, with near-instant sync. A headless client writes plain Markdown that gets a Git commit every 15 minutes, and that history is in nightly restic backups to Backblaze B2, encrypted before upload and restore-tested. Hermes, an open-source agent, and Claude Code read and write the vault under house rules and share one Git repository of skills; the server runs from a setup guide kept in the vault.',
 		},
 		{
 			name: 'ScrollUp',
@@ -117,11 +117,6 @@ export const resume = {
 			url: 'my-personal-journal.com',
 			period: '2024 – ongoing',
 			body: 'An end-to-end encrypted online journal: AES-256 on the device before anything is saved, encrypted photos, tags, links between entries, search and a bookbound reading view. TypeScript, React, Firebase, Cloud Functions, Playwright, GitHub Actions. Specs in Markdown, tests first and every change through a pipeline, since the first commit.',
-		},
-		{
-			name: 'local-llm-lab',
-			period: 'Ongoing',
-			body: 'Serving open-weight models myself, Qwen 32B through Ollama on rented GPUs (RunPod, Vast.ai), and benchmarking prompting, quantization and batching trade-offs against the Claude API on quality, latency and cost.',
 		},
 		{
 			name: 'Trade Seeds',
