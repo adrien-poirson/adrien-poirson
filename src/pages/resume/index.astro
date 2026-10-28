@@ -1,0 +1,29 @@
+---
+// The resume on the site, with the PDF a click away. The PDF is printed from /resume/print/ by `yarn resume`.
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+import ResumeSheet from '../../components/ResumeSheet.astro';
+import { site } from '../../data/site';
+
+const description =
+	'Resume of Adrien Poirson, software engineer in Vancouver: over ten years on the front end of data products, in React and TypeScript.';
+---
+
+<Layout title="Resume" description={description}>
+	<section class="dotgrid no-print">
+		<div class="mx-auto max-w-5xl px-6 pb-14 pt-16 sm:pt-24 lg:pb-20 lg:pt-32">
+			<p class="eyebrow">Resume</p>
+			<h1 class="display mt-6 max-w-[14ch] text-[3rem] sm:text-[4.25rem] lg:text-[5rem]">
+				Ten years on the front end of <em>data.</em>
+			</h1>
+			<p class="mt-10 max-w-[48ch] text-xl leading-relaxed text-ink-2">
+				The whole resume, on one page. Need it as a file for an application or a colleague? The PDF is the same thing.
+			</p>
+			<Button href={site.resumePdf} icon="download" download class="mt-10">Download the PDF</Button>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-5xl px-6 pb-16 lg:pb-24">
+		<ResumeSheet headingLevel={2} />
+	</section>
+</Layout>

@@ -5,7 +5,8 @@ export const site = {
 	tagline: 'Software engineer in Vancouver.',
 	email: 'adrien.poirson@gmail.com',
 	url: 'https://adrien-poirson.dev',
-	resume: '/ResumeAdrienPoirson.pdf',
+	resume: '/resume/',
+	resumePdf: '/ResumeAdrienPoirson.pdf',
 	github: 'https://github.com/adrien-poirson',
 	linkedin: 'https://www.linkedin.com/in/adrienpoirson',
 	employer: 'PolicyReporter',
@@ -17,5 +18,6 @@ export const nav = [
 	{ href: '/work/', label: 'Work' },
 	{ href: '/about/', label: 'About' },
 	{ href: '/blog/', label: 'Blog' },
+	{ href: '/resume/', label: 'Resume' },
 	{ href: '/contact/', label: 'Contact' },
 ];

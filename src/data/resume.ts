@@ -1,4 +1,5 @@
-// The resume, as data. /resume/ renders it, and `yarn resume` prints that page to public/ResumeAdrienPoirson.pdf.
+// The resume, as data. /resume/ renders it, and `yarn resume` prints /resume/print/ to public/ResumeAdrienPoirson.pdf.
+// Lines marked private are only in the PDF, never in the site's HTML.
 import { site } from './site';
 
 export const resume = {
@@ -6,8 +7,8 @@ export const resume = {
 	title: 'Software Engineer',
 	contact: [
 		{ label: 'Vancouver, BC, Canada' },
-		{ label: '604-347-5631', href: 'tel:+16043475631' },
-		{ label: site.email, href: `mailto:${site.email}` },
+		{ label: '604-347-5631', href: 'tel:+16043475631', private: true },
+		{ label: site.email, href: `mailto:${site.email}`, private: true },
 		{ label: 'linkedin.com/in/adrienpoirson', href: site.linkedin },
 		{ label: 'adrien-poirson.dev', href: site.url },
 	],

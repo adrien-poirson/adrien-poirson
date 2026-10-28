@@ -24,7 +24,7 @@ const pages = [
 	`- [About](${url('/about/')}): background, toolbox and principles.`,
 	`- [Blog](${url('/blog/')}): articles, published on Medium.`,
 	`- [Contact](${url('/contact/')}): how to get in touch.`,
-	`- [Resume (PDF)](${url(site.resume)}): the one-page resume.`,
+	`- [Resume](${url(site.resume)}): the resume, with a PDF to download at ${url(site.resumePdf)}.`,
 ];
 
 // One line per article, newest first. The articles themselves are on Medium.

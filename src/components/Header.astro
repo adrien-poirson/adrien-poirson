@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { nav, site } from '../data/site';
+import { nav } from '../data/site';
 
 const current = Astro.url.pathname;
 const isCurrent = (href: string) => current.startsWith(href);
@@ -23,11 +23,6 @@ const isCurrent = (href: string) => current.startsWith(href);
 					</a>
 				</li>
 			))}
-			<li>
-				<a href={site.resume} target="_blank" rel="noopener" class="transition-colors hover:text-ink">
-					Resume ↗
-				</a>
-			</li>
 		</ul>
 		<div class="flex items-center gap-1">
 			<button
@@ -84,11 +79,6 @@ const isCurrent = (href: string) => current.startsWith(href);
 					</a>
 				</li>
 			))}
-			<li>
-				<a href={site.resume} target="_blank" rel="noopener" class="block py-3 text-ink">
-					Resume ↗
-				</a>
-			</li>
 		</ul>
 	</div>
 </header>

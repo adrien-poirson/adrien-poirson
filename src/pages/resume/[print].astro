@@ -1,0 +1,32 @@
+---
+// The resume alone on a Letter page, with the phone and email, for `yarn resume` to print to the PDF.
+// Only built when RESUME_PDF is set (the `resume` script sets it), so it is never deployed.
+import '../../styles/global.css';
+import ResumeSheet from '../../components/ResumeSheet.astro';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+	return process.env.RESUME_PDF ? [{ params: { print: 'print' } }] : [];
+}
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<title>Resume | {site.name}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-paper font-sans text-ink">
+		<main class="mx-auto max-w-[8.5in] px-8 py-10 sm:px-12 sm:py-12 print:max-w-none print:p-0">
+			<ResumeSheet withPrivate />
+		</main>
+	</body>
+</html>
