@@ -11,9 +11,11 @@ interface Props {
 	noindex?: boolean;
 	/** What the page is to schema.org: an about page, a contact page, or a plain web page. */
 	pageType?: 'WebPage' | 'ProfilePage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+	/** What the page is mainly about, as schema.org data, e.g. the blog and its posts. */
+	mainEntity?: Record<string, unknown>;
 }
 
-const { title, description = site.description, noindex = false, pageType } = Astro.props;
+const { title, description = site.description, noindex = false, pageType, mainEntity } = Astro.props;
 const isHome = Astro.url.pathname === '/';
 const fullTitle = isHome ? `${site.name} | Software engineer in Vancouver` : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -60,7 +62,7 @@ const webpage = {
 	inLanguage: 'en',
 	isPartOf: { '@id': websiteId },
 	about: { '@id': personId },
-	...(isHome ? { mainEntity: { '@id': personId } } : {}),
+	...(isHome ? { mainEntity: { '@id': personId } } : mainEntity ? { mainEntity } : {}),
 	primaryImageOfPage: { '@type': 'ImageObject', url: image.url, width: image.width, height: image.height },
 	...(!isHome && {
 		breadcrumb: {

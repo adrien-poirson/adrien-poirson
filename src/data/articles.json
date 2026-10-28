@@ -1,0 +1,29 @@
+[
+	{
+		"id": "079e6e2ef31b",
+		"title": "Two RCEs, Two SQL Injections and a 94% Full Disk: Rescuing a Non-Profit’s Legacy PHP Server",
+		"url": "https://medium.com/@adrien.poirson/two-rces-two-sql-injections-and-a-94-full-disk-rescuing-a-non-profits-legacy-php-server-079e6e2ef31b",
+		"excerpt": "Patching, auditing and cleaning up a kiteboarding association’s server in a day, without an emergency migration",
+		"image": "https://cdn-images-1.medium.com/max/1024/1*BQWNDKJ-lgbljr5TIoccog.png",
+		"tags": [],
+		"published": "2026-10-28T04:53:29.000Z",
+		"updated": "2026-10-28T04:53:29.083Z",
+		"minutes": 6
+	},
+	{
+		"id": "c99b20d570fd",
+		"title": "Building a Production-Ready CI/CD Pipeline: From Code to Production in Three Environments",
+		"url": "https://medium.com/@adrien.poirson/building-a-production-ready-ci-cd-pipeline-from-code-to-production-in-three-environments-c99b20d570fd",
+		"excerpt": "How I automated deployments across preview, staging, and production environments for my personal journal application",
+		"image": "https://cdn-images-1.medium.com/max/1024/1*mUB-RF47CaeKJP5W5MldcA.png",
+		"tags": [
+			"firebase",
+			"continuous-integration",
+			"github-actions",
+			"continuous-delivery"
+		],
+		"published": "2026-01-30T04:54:07.000Z",
+		"updated": "2026-01-30T04:54:07.102Z",
+		"minutes": 9
+	}
+]

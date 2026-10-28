@@ -15,7 +15,8 @@
     "check": "astro check",
     "astro": "astro",
     "resume": "astro build && node scripts/resume-pdf.mjs",
-    "og": "node scripts/og-image.mjs"
+    "og": "node scripts/og-image.mjs",
+    "medium": "node scripts/medium.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

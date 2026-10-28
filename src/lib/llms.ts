@@ -4,6 +4,7 @@ import { site } from '../data/site';
 import { roles, projects } from '../data/experience';
 import { skills, offers } from '../data/skills';
 import { aiPractice } from '../data/ai';
+import { articles, formatDate } from '../data/articles';
 
 const url = (path: string) => new URL(path, site.url).href;
 
@@ -21,9 +22,14 @@ const pages = [
 	`- [Home](${url('/')}): introduction, what Adrien builds, selected work and working with AI.`,
 	`- [Work](${url('/work/')}): every role, newest first, and personal projects.`,
 	`- [About](${url('/about/')}): background, toolbox and principles.`,
+	`- [Blog](${url('/blog/')}): articles, published on Medium.`,
 	`- [Contact](${url('/contact/')}): how to get in touch.`,
 	`- [Resume (PDF)](${url(site.resume)}): the one-page resume.`,
 ];
+
+// One line per article, newest first. The articles themselves are on Medium.
+const articleList = () =>
+	articles.length ? ['## Articles', '', ...articles.map((a) => `- [${a.title}](${a.url}) (${formatDate(a.published)}): ${a.excerpt}`), ''] : [];
 
 export function llmsTxt() {
 	return [
@@ -33,6 +39,7 @@ export function llmsTxt() {
 		'',
 		...pages,
 		'',
+		...articleList(),
 		'## Optional',
 		'',
 		`- [Full text](${url('/llms-full.txt')}): the whole site in one plain-text file.`,
@@ -64,6 +71,8 @@ export function llmsFullTxt() {
 
 	out.push('## Working with AI', '', aiPractice.lead, '');
 	for (const { title, body } of aiPractice.items) out.push(`### ${title}`, '', body, '');
+
+	out.push(...articleList());
 
 	out.push('## Toolbox', '');
 	for (const { title, skills: items } of skills) out.push(`- ${title}: ${items.join(', ')}`);

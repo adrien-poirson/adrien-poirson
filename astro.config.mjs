@@ -12,6 +12,8 @@ export default defineConfig({
 	// The resume page is noindex (the PDF is the one to share), so it stays out of the sitemap too.
 	integrations: [sitemap({ filter: (page) => !page.endsWith('/resume/') })],
 	build: { inlineStylesheets: 'always' },
+	// Cover images for /blog/ come from Medium's CDN and are resized at build time like the local ones.
+	image: { domains: ['cdn-images-1.medium.com', 'miro.medium.com'] },
 	vite: {
 		plugins: [tailwindcss()],
 	},
