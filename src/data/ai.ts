@@ -26,7 +26,7 @@ export const aiPractice = {
 		{ name: 'ScrollUp', blurb: 'A daily learning dashboard whose content an agent writes into the vault.', href: '/work/#scrollup' },
 		{
 			name: 'My Personal Journal',
-			blurb: 'An end-to-end encrypted journal, built with an agent as a pair from the first commit.',
+			blurb: 'An end-to-end encrypted journal: specs in Markdown and tests first, from the first commit.',
 			href: '/work/#my-personal-journal',
 		},
 		{ name: 'local-llm-lab', blurb: 'Open-weight models served by hand, measured against the Claude API.', href: '/work/#local-llm-lab' },

@@ -150,7 +150,7 @@ export const projects: Project[] = [
 		period: 'Ongoing',
 		story: [
 			'The problem: I wanted to close a specific skill gap, the fundamentals of machine learning on top of my software engineering, in a quarter of an hour a day, and no course or feed fit. So I built the dashboard I open every morning: two tabs, Learn and Practice, with streaks, XP and levels so that coming back is satisfying.',
-			'It has no fixed subjects. What it teaches comes from the sources I give it: book chapters through Marker, newsletters through Crawl4AI, videos through yt-dlp and Whisper, into a Markdown vault that is also my notes. An agent turns those raw sources into lessons and exercises, every item cites its page or URL, and the app indexes and serves the vault. I act as tech lead and product owner; Claude Code writes most of the code.',
+			'It has no fixed subjects. What it teaches comes from the sources I give it: book chapters through Marker, newsletters through Crawl4AI, videos through yt-dlp and Whisper, into a Markdown vault that is also my notes. An agent turns those raw sources into lessons and exercises, every item cites its page or URL, and the app indexes and serves the vault.',
 		],
 		stack: ['React', 'Vite', 'TypeScript', 'Fastify', 'PostgreSQL', 'Drizzle', 'Markdown vault', 'Claude Code agent', 'Marker', 'Crawl4AI', 'yt-dlp + Whisper'],
 	},
@@ -160,7 +160,7 @@ export const projects: Project[] = [
 		period: '2024 – ongoing',
 		story: [
 			'A private online journal. Every entry is encrypted on your device before it is saved, so nobody else can read it, not even the server. Rich text, photos encrypted the same way, tags, links between entries, search, and a book you bind in the cover and font you like.',
-			'It started in the summer of 2024 out of a long habit of writing things down, and it has been built with an AI agent as a pair programmer from the first commit: specs in Markdown, tests first, every change through a pipeline.',
+			'It started in the summer of 2024 out of a long habit of writing things down, and it has been built the same way since the first commit: specs in Markdown, tests first, every change through a pipeline.',
 		],
 		stack: ['TypeScript', 'React', 'styled-components', 'Firebase', 'Cloud Functions', 'Playwright', 'GitHub Actions'],
 		image: journal,
