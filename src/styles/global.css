@@ -116,6 +116,8 @@
 @utility dotgrid {
 	position: relative;
 	isolation: isolate;
+	/* A faint rust glow in the top corner, under the dots. */
+	background: radial-gradient(60rem 32rem at 88% -12%, color-mix(in oklab, var(--accent) 9%, transparent), transparent 70%);
 	&::before {
 		content: '';
 		position: absolute;
@@ -340,20 +342,70 @@
 	background: linear-gradient(to bottom, var(--paper-2), transparent 14rem);
 }
 
+/* A full band in the paper's darker tone, fading toward the page and lit faintly in one corner, instead of a flat fill. */
+@utility wash {
+	background:
+		radial-gradient(48rem 24rem at 8% 0%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 70%),
+		linear-gradient(to bottom, var(--paper-2), color-mix(in oklab, var(--paper-2) 45%, var(--paper)));
+}
+
+/* A dashboard tile: the darker paper with a soft sheen from the top left. */
+@utility tile {
+	background: linear-gradient(155deg, color-mix(in oklab, var(--paper-2) 55%, var(--paper)), var(--paper-2) 70%);
+}
+
+/* The footer rises out of the paper's darker tone. */
+@utility footer-fade {
+	background: linear-gradient(to top, var(--paper-2), transparent);
+}
+
 /*
   Screenshots sit in a laptop: a paper lid rounded at the top with a small camera dot, so a bright
   product UI does not float on the background, and under it the base, flared for perspective and
-  fading out, with its keyboard and trackpad drawn in muted lines. In dark mode the screenshots are
+  fading out, with its keyboard drawn in muted lines. In dark mode the screenshots are
   dimmed a little until hovered, so they do not glare.
 */
+/* A screenshot's caption: a faint ink tint behind it, so it reads on paper or on a band, in either theme. */
+@utility shot-caption {
+	position: relative;
+	display: inline-block;
+	border-radius: 0.4rem;
+	padding: 0.4rem 0.7rem;
+	background: color-mix(in oklab, var(--ink) 6%, transparent);
+	color: var(--ink-2);
+}
+
+/* The figure around a screenshot is the size container its laptop measures itself against. */
+figure:has(> .shot) {
+	container-type: inline-size;
+}
 @utility shot {
 	/* How far the base flares past the lid on each side; within the page gutter, so it never scrolls. */
 	--deck-flare: 1rem;
+	/* The laptop's own colours: a silver aluminium in light mode, a space grey in dark mode. */
+	--shot-body: #e4e3e1;
+	--shot-edge: #cbc9c5;
+	--shot-detail: #d3d1cd;
+	--shot-camera: #8e8c88;
+	--shot-sheen: color-mix(in oklab, var(--shot-body) 55%, white);
+	&:where([data-theme='dark'] *) {
+		--shot-body: #3a3a3d;
+		--shot-edge: #4c4c50;
+		--shot-detail: #2a2a2c;
+		--shot-camera: #1c1c1e;
+		--shot-sheen: color-mix(in oklab, var(--shot-body) 86%, white);
+	}
+	/* Keys are sized from the laptop's width (cqw, from the figure around it), so they stay near square at any size; the rows follow. */
+	--key: calc(81cqw / 18 - 0.25rem);
+	--row-2: calc(0.95rem + var(--key) + 0.3rem);
+	--deck: calc(var(--row-2) + var(--key) + 0.6rem);
 	position: relative;
-	margin-bottom: 3.25rem;
+	/* The caption starts just under the second row of keys. */
+	margin-bottom: calc(var(--row-2) + var(--key) + 0.3rem);
 	padding: 1.1rem 0.6rem 0.6rem;
-	background: radial-gradient(circle at 50% 0.55rem, var(--rule-strong) 0.15rem, transparent 0.16rem), var(--paper-2);
-	border: 1px solid var(--rule);
+	background: radial-gradient(circle at 50% 0.55rem, var(--shot-camera) 0.15rem, transparent 0.16rem),
+		linear-gradient(to bottom, var(--shot-sheen), var(--shot-body) 45%);
+	border: 1px solid var(--shot-edge);
 	border-radius: 0.9rem 0.9rem 0 0;
 	/* The base: ::before is its outline, ::after its surface, 1px inside it. */
 	&::before,
@@ -363,30 +415,27 @@
 		top: calc(100% + 1px);
 		left: calc(-1 * var(--deck-flare));
 		right: calc(-1 * var(--deck-flare));
-		height: 3.25rem;
+		height: var(--deck);
 		mask-image: linear-gradient(to bottom, #000 15%, transparent);
 		pointer-events: none;
 	}
 	&::before {
-		background: var(--rule);
+		background: var(--shot-edge);
 		clip-path: polygon(var(--deck-flare) 0, calc(100% - var(--deck-flare)) 0, 100% 100%, 0 100%);
 	}
 	&::after {
 		background:
 			/* The hinge. */
-			linear-gradient(var(--rule), var(--rule)) 50% 0 / calc(100% - 2 * var(--deck-flare)) 0.3rem no-repeat,
+			linear-gradient(var(--shot-detail), var(--shot-detail)) 50% 0 / calc(100% - 2 * var(--deck-flare)) 0.3rem no-repeat,
 			/* Two rows of keys, a little below the hinge. */
-			repeating-linear-gradient(90deg, var(--rule) 0 calc(100% / 13 - 0.25rem), transparent 0 calc(100% / 13)) 50% 1rem / 81% 0.35rem no-repeat,
-			repeating-linear-gradient(90deg, var(--rule) 0 calc(100% / 12 - 0.25rem), transparent 0 calc(100% / 12)) 50% 1.5rem / 82% 0.35rem no-repeat,
-			/* The trackpad: its top edge and two sides. */
-			linear-gradient(var(--rule), var(--rule)) 50% 2.15rem / 28% 1px no-repeat,
-			linear-gradient(90deg, var(--rule) 0 1px, transparent 1px calc(100% - 1px), var(--rule) 0) 50% 2.15rem / 28% 100% no-repeat,
-			var(--paper-2);
+			repeating-linear-gradient(90deg, var(--shot-detail) 0 calc(100% / 18 - 0.25rem), transparent 0 calc(100% / 18)) 50% 0.95rem / 81% var(--key) no-repeat,
+			repeating-linear-gradient(90deg, var(--shot-detail) 0 calc(100% / 17 - 0.25rem), transparent 0 calc(100% / 17)) 50% var(--row-2) / 77% var(--key) no-repeat,
+			var(--shot-body);
 		clip-path: polygon(calc(var(--deck-flare) + 1px) 0, calc(100% - var(--deck-flare) - 1px) 0, calc(100% - 1px) 100%, 1px 100%);
 	}
 	& img {
 		display: block;
-		border: 1px solid var(--rule);
+		border: 1px solid var(--shot-detail);
 		border-radius: 0.2rem 0.2rem 0 0;
 		/* One screen shape for every screenshot: taller ones lose their bottom, wider ones their sides. */
 		aspect-ratio: 16 / 10;

@@ -81,7 +81,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 										style={imagePosition && `object-position: ${imagePosition}`}
 									/>
 								</div>
-								{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
+								{imageAlt && <figcaption class="shot-caption mono mt-3">{imageAlt}</figcaption>}
 							</figure>
 						)}
 					</div>
@@ -127,7 +127,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 	</section>
 
 	<!-- Personal projects: the heading on top, then one row per project, its name and stack beside the story. -->
-	<section class="bg-paper-2">
+	<section class="wash">
 		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
 			<p class="eyebrow">On my own time</p>
 			<h2 class="heading mt-3 text-4xl sm:text-5xl">
@@ -172,7 +172,7 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 											style={imagePosition && `object-position: ${imagePosition}`}
 										/>
 									</div>
-									{imageAlt && <figcaption class="mono mt-3 text-ink-3">{imageAlt}</figcaption>}
+									{imageAlt && <figcaption class="shot-caption mono mt-3">{imageAlt}</figcaption>}
 								</figure>
 							)}
 						</div>
