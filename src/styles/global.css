@@ -296,7 +296,7 @@
 	}
 }
 
-/* A small outlined pill for a tag, in the shape of the line button. */
+/* A small pill for a tag: outlined in light mode, filled like the logo tile in dark mode, for contrast. */
 @utility chip {
 	display: inline-flex;
 	align-items: center;
@@ -307,6 +307,11 @@
 	line-height: 1.25;
 	max-width: 100%;
 	color: var(--ink-2);
+	&:where([data-theme='dark'] *) {
+		background: var(--ink);
+		border-color: var(--ink);
+		color: var(--paper);
+	}
 }
 
 /* A list of short things separated by middle dots instead of boxes. */
