@@ -13,8 +13,6 @@ interface Props {
 const { withPrivate = false, headingLevel = 1 } = Astro.props;
 const Name = headingLevel === 1 ? 'h1' : 'h2';
 const contact = resume.contact.filter((c) => withPrivate || !c.private);
-// Each skill line as separate items, splitting on commas outside parentheses.
-const split = (items: string) => items.split(/,\s*(?![^()]*\))/);
 ---
 
 <article class="sheet">
@@ -44,18 +42,18 @@ const split = (items: string) => items.split(/,\s*(?![^()]*\))/);
 		<h2 class="sheet-title heading">Skills</h2>
 		<table class="mt-1 w-full border-collapse">
 			<tbody>
-				{resume.skills.map(({ title, items }) => (
+				{resume.skills.map(({ title, skills: items }) => (
 					<tr class="block align-baseline py-3 print:table-row print:py-0">
 						<th scope="row" class="block pr-4 text-left text-[0.8rem] font-medium text-ink-2 print:table-cell print:w-[11rem] print:py-2">
 							{title}
 						</th>
 						<td class="mt-2 block text-[0.92rem] leading-snug print:mt-0 print:table-cell print:py-2">
 							<ul class="skill-chips flex flex-wrap gap-1.5">
-								{split(items).map((item) => (
+								{items.map((item) => (
 									<li class="chip">{item}</li>
 								))}
 							</ul>
-							<span class="skill-text">{items}</span>
+							<span class="skill-text">{items.join(', ')}</span>
 						</td>
 					</tr>
 				))}

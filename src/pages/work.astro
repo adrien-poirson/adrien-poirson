@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Cta from '../components/Cta.astro';
 import { roles, projects } from '../data/experience';
 import { experience } from '../data/site';
+import { pipeline } from '../data/pipeline';
 
 const description =
 	'Adrien Poirson’s work, in order: PolicyReporter, CS Disco, Global Relay, Calabrio, Cumul8, Thinkingbox and JCOMMOPS, plus personal projects.';
@@ -87,6 +88,36 @@ const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 				</li>
 			))}
 		</ol>
+	</section>
+
+	<!-- The pipeline I own: six numbered steps down the page, each with what it means and the tools behind it. -->
+	<section class="band" id="pipeline">
+		<div class="mx-auto max-w-5xl px-6 py-16 lg:py-24">
+			<div class="grid gap-6 lg:grid-cols-12">
+				<div class="lg:col-span-6">
+					<p class="eyebrow">{pipeline.eyebrow}</p>
+					<h2 class="heading mt-3 text-4xl sm:text-5xl">
+						{pipeline.heading[0]}
+						<em>{pipeline.heading[1]}</em>
+					</h2>
+				</div>
+				<p class="max-w-[46ch] self-end text-lg leading-relaxed text-ink-2 lg:col-span-5 lg:col-start-8">{pipeline.lead}</p>
+			</div>
+			<ol class="mt-12 lg:mt-14">
+				{pipeline.steps.map(({ title, body, tools }, i) => (
+					<li class="grid gap-x-10 gap-y-3 py-5 sm:grid-cols-[3rem_1fr] lg:grid-cols-[3rem_11rem_1fr_15rem] lg:items-baseline">
+						<p class="mono text-accent">{String(i + 1).padStart(2, '0')}</p>
+						<h3 class="heading text-2xl">{title}</h3>
+						<p class="leading-relaxed text-ink-2 sm:col-start-2 lg:col-start-auto">{body}</p>
+						<ul class="flex flex-wrap gap-1.5 sm:col-start-2 lg:col-start-auto">
+							{tools.map((t) => (
+								<li class="chip">{t}</li>
+							))}
+						</ul>
+					</li>
+				))}
+			</ol>
+		</div>
 	</section>
 
 	<!-- Personal projects: the heading on top, then one row per project, its name and stack beside the story. -->
