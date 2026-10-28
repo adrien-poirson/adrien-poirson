@@ -15,7 +15,7 @@ const header = [
 	'',
 	`${site.name} is a ${site.role.toLowerCase()} at ${site.employer}, based in Vancouver, Canada. Works in English and French, remote since 2018, with a Master in Information Systems and Software Development from UT1 Capitole, France.`,
 	'',
-	`Contact: ${site.email} · LinkedIn: ${site.linkedin} · GitHub: ${site.github}`,
+	`Contact: ${site.url}/contact/ · LinkedIn: ${site.linkedin} · GitHub: ${site.github}`,
 ];
 
 const pages = [

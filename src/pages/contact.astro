@@ -79,19 +79,11 @@ const description = 'Say hello to Adrien Poirson, software engineer in Vancouver
 					<h2 class="heading mt-3 text-4xl">
 						Thank you, it is on its <em>way.</em>
 					</h2>
-					<p class="mt-4 max-w-[44ch] leading-relaxed text-ink-2">I will write back from {site.email}.</p>
+					<p class="mt-4 max-w-[44ch] leading-relaxed text-ink-2">I will write back within a few days.</p>
 				</div>
 			</div>
 
 			<dl class="grid gap-4 self-start lg:col-span-4 lg:col-start-9">
-				<div class="border-t border-rule pt-3">
-					<dt class="eyebrow">Prefer email?</dt>
-					<dd class="mt-1.5 font-medium">
-						<a href={`mailto:${site.email}`} class="link">
-							{site.email}
-						</a>
-					</dd>
-				</div>
 				<div class="border-t border-rule pt-3">
 					<dt class="eyebrow">Usually</dt>
 					<dd class="mt-1.5 font-medium">Within a few days</dd>
@@ -159,8 +151,7 @@ const description = 'Say hello to Adrien Poirson, software engineer in Vancouver
 			showSent();
 		} catch {
 			if (status)
-				status.innerHTML =
-					'Something went wrong. Please try again, or write to <a class="link" href="mailto:adrien.poirson@gmail.com">adrien.poirson@gmail.com</a>.';
+				status.textContent = 'Something went wrong. Please try again, or reach me on LinkedIn.';
 			if (submit) submit.disabled = false;
 		}
 	});

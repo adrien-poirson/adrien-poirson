@@ -1,5 +1,5 @@
 ---
-// The closing block on every page: a line in the serif and the email address as the biggest link on the page.
+// The closing block on every page: a line in the serif and the contact form as the biggest link on the page.
 import { site } from '../data/site';
 
 interface Props {
@@ -20,18 +20,13 @@ const {
 		</div>
 		<div class="lg:col-span-8">
 			<a
-				href={`mailto:${site.email}`}
-				class="heading inline-block break-all text-[1.75rem] text-ink underline decoration-accent decoration-1 underline-offset-8 transition-colors hover:text-accent sm:text-4xl lg:text-5xl"
+				href="/contact/"
+				class="heading inline-block text-[1.75rem] text-ink underline decoration-accent decoration-1 underline-offset-8 transition-colors hover:text-accent sm:text-4xl lg:text-5xl"
 			>
-				{site.email}
+				Write me a note →
 			</a>
 			<p class="mt-6 max-w-[52ch] leading-relaxed text-ink-2">{body}</p>
 			<ul class="dotted-list mono mt-6 text-ink-2">
-				<li>
-					<a href="/contact/" class="link">
-						Contact form
-					</a>
-				</li>
 				<li>
 					<a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="link">
 						LinkedIn
