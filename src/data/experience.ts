@@ -13,7 +13,7 @@ export interface Role {
 	period: string;
 	/** One short summary sentence; the work page shows it above the story. */
 	lead: string;
-	/** The one line that sums the job up, used on the home page. */
+	/** The hard problem in one line, for the home page's Selected work; it should not repeat the lead. */
 	summary: string;
 	/** What the job was built with, shown as pills on the work page. */
 	stack: string[];
@@ -58,7 +58,7 @@ export const roles: Role[] = [
 		role: 'Software architect, reporting',
 		period: 'Jan 2022 – Aug 2024',
 		summary:
-			'Organization Metrics, a reporting product that shows legal teams how their whole organisation uses the platform, built from the ground up with React and GraphQL.',
+			'A year of activity across a large law firm, on a page that has to feel instant.',
 		stack: ['TypeScript', 'React', 'GraphQL', 'react-window', 'react-aria'],
 		story: [
 			'DISCO uses AI, cloud computing and data analytics to change how law is practised. A friend already worked there, and the mission made the decision easy. I joined to build Organization Metrics, a reporting product that shows customers how their whole organisation uses the platform, and I built it from the ground up: the architecture, the library choices and most of the code, with one back-end engineer alongside.',
@@ -98,7 +98,7 @@ export const roles: Role[] = [
 		role: 'Principal front-end developer, Data Explorer',
 		period: 'Oct 2017 – Sep 2021',
 		summary:
-			'Led the front end of Data Explorer, a rebuild of a Java and GWT analytics tool in React, and built its pivot table from scratch to handle millions of data points.',
+			'A pivot table nothing off the shelf could do, fast with millions of data points.',
 		stack: ['React 16', 'Victory', 'react-virtualized', 'styled-components', 'ImmutableJS', 'Material UI'],
 		story: [
 			'Calabrio makes workforce-optimisation software for contact centres, and joining them fulfilled a long-held ambition to work for an American company. I was hired as the principal front-end developer to modernise Data Explorer, their BI tool: replace the Java and GWT codebase with a React front end and reach feature parity. I designed the architecture and chose the libraries, and as more developers joined I led the team for several months, setting coding standards, reviewing code and mentoring.',
@@ -120,7 +120,7 @@ export const roles: Role[] = [
 		location: 'Vancouver, BC',
 		role: 'Front-end engineer',
 		period: 'Jan 2016 – Nov 2017',
-		summary: 'A data analytics and IoT platform: real-time dashboards, interactive charts, a shared component library and a React Native app.',
+		summary: 'Live data from connected devices, as real-time dashboards on the web and on phones.',
 		stack: ['React 15', 'React Native', 'Victory', 'ImmutableJS', 'react-virtualized'],
 		story: [
 			'Cumul8 was a data analytics and IoT platform that helped companies monitor, analyse and act on their data. This is where front-end development clicked for me. I worked alongside people who shared what they knew freely, grew faster than anywhere before or since, and built my first real-time dashboards and interactive charts.',
@@ -183,12 +183,12 @@ export const projects: Project[] = [
 	{
 		name: 'Second brain',
 		period: 'Ongoing',
-		lead: 'My notes, my agent and my apps, on a server I run at home.',
+		lead: 'My notes, my agents and my apps, on a server I own, encrypted wherever they travel.',
 		story: [
-			'Everything I learn and plan lives in one Obsidian vault of plain Markdown. It syncs between my MacBook and iPhone in seconds through Self-hosted LiveSync and a CouchDB on my own server instead of iCloud, encrypted before it leaves the device, and every 15 minutes the plain files are committed to a private Git repository for history and an off-site copy.',
-			'The server is a headless Ubuntu box under my desk, reachable only over Tailscale. Hermes, an open-source agent, runs on it: I message it on Telegram, it reads the vault, and it keeps the server running from a setup guide that is itself a note in that vault. A dashboard shows every service, its health, what the models cost and the last backup, and restic sends encrypted backups to Backblaze B2.',
+			'Everything I learn and plan lives in one Obsidian vault of plain Markdown, and it left iCloud for hardware I own. Self-hosted LiveSync encrypts each note on my MacBook or iPhone before it syncs, near instantly, through a CouchDB on the server, and a headless client there writes the vault out as plain files. Those get a Git commit every 15 minutes, and the history is in a nightly restic backup to Backblaze B2, encrypted before upload and restore-tested. The rule: my notes only leave the house end-to-end encrypted.',
+			'The server is a headless Ubuntu box under my desk with no port open to the internet: everything reaches it over Tailscale. Hermes, an open-source agent, runs on it around the clock and I message it on Telegram; Claude Code reaches the same files over SSH. Both read and write the vault under house rules in an AGENTS.md, and Hermes keeps the server running from a setup guide that is itself a note in the vault. A dashboard shows every service, its health, what the models cost and the last backup.',
 		],
-		stack: ['Obsidian', 'Self-hosted LiveSync', 'CouchDB', 'Git', 'Ubuntu server', 'Docker', 'Tailscale', 'Hermes agent', 'Telegram', 'Homepage', 'restic + Backblaze B2'],
+		stack: ['Obsidian', 'Self-hosted LiveSync', 'CouchDB', 'Git', 'restic + Backblaze B2', 'Ubuntu server', 'Docker', 'Tailscale', 'Hermes agent', 'Claude Code', 'Telegram', 'Homepage'],
 	},
 	{
 		name: 'ScrollUp',
@@ -213,15 +213,6 @@ export const projects: Project[] = [
 		image: journal,
 		imageAlt: 'My Personal Journal: an entry open in the book, beside the index of past entries.',
 		imagePosition: 'top left',
-	},
-	{
-		name: 'local-llm-lab',
-		period: 'Ongoing',
-		lead: 'A standalone lab for serving open-weight models myself.',
-		story: [
-			'It runs Qwen 32B through Ollama on rented GPUs and measures the prompting, quantization and batching trade-offs against the Claude API on quality, latency and cost. Kept apart from ScrollUp on purpose, so the messy exploration never blocks shipping. If it pans out, it becomes ScrollUp’s local provider.',
-		],
-		stack: ['Ollama', 'Qwen 32B', 'RunPod and Vast.ai', 'Python', 'Benchmarks'],
 	},
 	{
 		name: 'Trade Seeds',

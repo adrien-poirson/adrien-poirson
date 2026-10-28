@@ -2,7 +2,7 @@
 export const aiPractice = {
 	eyebrow: '03 — Working with AI',
 	heading: ['Fully on board, eyes ', 'open.'],
-	lead: 'I do not use AI as autocomplete. Agents do real work for me every day, on my laptop and on a server in my living room, and I keep everything that matters in plain files I can read.',
+	lead: 'I do not use AI as autocomplete. Agents do real work for me every day, on my laptop and on a server under my desk, and I keep everything that matters in plain files I can read.',
 	items: [
 		{
 			title: 'Two agents, one set of skills',
@@ -10,11 +10,11 @@ export const aiPractice = {
 		},
 		{
 			title: 'Frontier models and open ones',
-			body: 'Claude for anything that touches code. Open-weight models through OpenRouter for the agent that runs all day, where cost and privacy matter more than brilliance. And a side lab where I serve Qwen 32B myself on rented GPUs and benchmark it against the Claude API on quality, latency and cost.',
+			body: 'Claude for anything that touches code. The agent that runs all day uses pay-per-token models through OpenRouter, with a monthly cap on the key and a daily report of what it spent, usually around twenty cents. Those cloud models can still read my notes, so next is an RTX 3090 in the server, for a local model that keeps them in the house.',
 		},
 		{
 			title: 'A second brain in Markdown',
-			body: 'What I know lives in one vault of plain Markdown notes with wikilinks, open in Obsidian, synced to the server and committed to Git every fifteen minutes. Agents read it for context and write to it under rules I set. The vault is the source of truth; any database on top is a rebuildable index.',
+			body: 'What I know lives in one vault of plain Markdown notes with wikilinks, open in Obsidian. It syncs end-to-end encrypted to the server, gets a Git commit every fifteen minutes, and only leaves the house encrypted. Agents read and write it several times a day under house rules: nothing deleted, moved or rewritten unless I ask, and the history is off limits. The vault is the source of truth; any database on top is a rebuildable index.',
 		},
 		{
 			title: 'Pipelines that feed it',
@@ -29,6 +29,5 @@ export const aiPractice = {
 			blurb: 'An end-to-end encrypted journal: specs in Markdown and tests first, from the first commit.',
 			href: '/work/#my-personal-journal',
 		},
-		{ name: 'local-llm-lab', blurb: 'Open-weight models served by hand, measured against the Claude API.', href: '/work/#local-llm-lab' },
 	],
 };
