@@ -1,5 +1,16 @@
 [
 	{
+		"id": "cee904ec479b",
+		"title": "Two sessions, one folder, one bad afternoon",
+		"url": "https://medium.com/@adrien.poirson/two-sessions-one-folder-one-bad-afternoon-cee904ec479b",
+		"excerpt": "The fix is old and boring: git worktrees. One repository, several folders, each with its own branch checked out. Claude Code supports them out of the box, and so does VS Code now.",
+		"image": "https://cdn-images-1.medium.com/max/1024/1*L5A1VCUZULs9ELXsmV6H0A.png",
+		"tags": [],
+		"published": "2026-11-18T02:45:59.000Z",
+		"updated": "2026-11-18T02:45:59.262Z",
+		"minutes": 12
+	},
+	{
 		"id": "079e6e2ef31b",
 		"title": "Two RCEs, Two SQL Injections and a 94% Full Disk: Rescuing a Non-Profit’s Legacy PHP Server",
 		"url": "https://medium.com/@adrien.poirson/two-rces-two-sql-injections-and-a-94-full-disk-rescuing-a-non-profits-legacy-php-server-079e6e2ef31b",
